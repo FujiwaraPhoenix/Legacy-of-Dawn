@@ -1,0 +1,11 @@
+1/26/17
+Got down to business. :D
+Demarcated an area within the screen for the game, and god player movement within that region.
+Also implemented a basic shot function, plus focusing and unfocusing.
+I want better sprites.
+Added a background object to control lives, bombs, and points. Will use from scene to scene. :D
+
+Tomorrow: Start messing with enemy collision and player collision to bullets. It's a success if I can get both sides to die. Maybe get to work with power and item drops?
+Power might be a problem...
+
+1/27/17
