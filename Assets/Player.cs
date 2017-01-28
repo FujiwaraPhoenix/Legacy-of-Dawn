@@ -4,6 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     public GameObject shot;
+    public Controller cont;
 
     public SpriteRenderer spriteRenderer;
     public Sprite focus;
