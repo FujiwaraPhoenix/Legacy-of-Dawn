@@ -9,3 +9,9 @@ Tomorrow: Start messing with enemy collision and player collision to bullets. It
 Power might be a problem...
 
 1/27/17
+Note for the future: SIMULATED HAS TO BE ON. ffs Unity.
+
+Well, that ate all of my time. I'll work on player collision and items tomorrow. Maybe work on power, too.
+
+1/28/17
+Item collision done. Player-enemy unit collision also done. :D

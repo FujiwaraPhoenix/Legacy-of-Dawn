@@ -40,11 +40,14 @@ public class Enemy : MonoBehaviour {
     {
         if (coll.gameObject.tag == "shot")
         {
-            Debug.Log("Ayy");
             Destroy(coll.gameObject);
             hp = hp - cont.dmg;
         }
-        Debug.Log("Colliding!");
+        if (coll.gameObject.tag == "Player")
+        {
+            coll.gameObject.transform.position = new Vector3(-6, 2, 0);
+            cont.lives--;
+        }
     }
 
     void hover(float x, float y)
