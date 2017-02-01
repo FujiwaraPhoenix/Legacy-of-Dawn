@@ -3,8 +3,9 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-    public GameObject shot;
+    public Bullet shot, shot2;
     public Controller cont;
+    public Orbiter a, b;
 
     public SpriteRenderer spriteRenderer;
     public Sprite focus;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour {
         Fire();
         counter++;
 	}
+
 
     void Movement()
     {
@@ -129,9 +131,67 @@ public class Player : MonoBehaviour {
         {
             if (counter > 5)
             {
-                GameObject Copy = (Instantiate(shot, transform.position, transform.rotation)) as GameObject;
-                counter = 0;
+                if (cont.power < 2f)
+                {
+                    Vector3 offset1 = new Vector3(.25f, 0, 0);
+                    Vector3 offset2 = new Vector3(-.25f, 0, 0);
+                    Bullet Copy = (Instantiate(shot, transform.position + offset1, transform.rotation)) as Bullet;
+                    Bullet Copy2 = (Instantiate(shot, transform.position + offset2, transform.rotation)) as Bullet;
+                    counter = 0;
+                    a.on = false;
+                    b.on = false;
+                }
+                else if (cont.power < 3f)
+                {
+                    Vector3 offset1 = new Vector3(.25f, 0, 0);
+                    Vector3 offset2 = new Vector3(-.25f, 0, 0);
+                    Vector3 offset3 = new Vector3(0, .25f, 0);
+                    Vector3 offset4 = new Vector3(-.5f, 0, 0);
+                    Vector3 offset5 = new Vector3(.5f, 0, 0);
+                    Bullet Copy = (Instantiate(shot, transform.position + offset1, transform.rotation)) as Bullet;
+                    Bullet Copy2 = (Instantiate(shot, transform.position + offset2, transform.rotation)) as Bullet;
+                    Bullet Copy3 = (Instantiate(shot, transform.position + offset3, transform.rotation)) as Bullet;
+                    Bullet Copy4 = (Instantiate(shot2, transform.position + offset4, transform.rotation)) as Bullet;
+                    Bullet Copy5 = (Instantiate(shot2, transform.position + offset5, transform.rotation)) as Bullet;
+                    counter = 0;
+                    a.on = false;
+                    b.on = false;
+                }
+                else if (cont.power < 4f)
+                {
+                    Vector3 offset1 = new Vector3(.25f, 0, 0);
+                    Vector3 offset2 = new Vector3(-.25f, 0, 0);
+                    Vector3 offset3 = new Vector3(0, .25f, 0);
+                    Vector3 offset4 = new Vector3(-.5f, 0, 0);
+                    Vector3 offset5 = new Vector3(.5f, 0, 0);
+                    Bullet Copy = (Instantiate(shot, transform.position + offset1, transform.rotation)) as Bullet;
+                    Bullet Copy2 = (Instantiate(shot, transform.position + offset2, transform.rotation)) as Bullet;
+                    Bullet Copy3 = (Instantiate(shot, transform.position + offset3, transform.rotation)) as Bullet;
+                    Bullet Copy4 = (Instantiate(shot2, transform.position + offset4, transform.rotation)) as Bullet;
+                    Bullet Copy5 = (Instantiate(shot2, transform.position + offset5, transform.rotation)) as Bullet;
+                    counter = 0;
+                    a.on = true;
+                    b.on = false;
+                }
+                else if (cont.power < 5f)
+                {
+                    Vector3 offset1 = new Vector3(.25f, 0, 0);
+                    Vector3 offset2 = new Vector3(-.25f, 0, 0);
+                    Vector3 offset3 = new Vector3(0, .25f, 0);
+                    Vector3 offset4 = new Vector3(-.5f, 0, 0);
+                    Vector3 offset5 = new Vector3(.5f, 0, 0);
+                    Bullet Copy = (Instantiate(shot, transform.position + offset1, transform.rotation)) as Bullet;
+                    Bullet Copy2 = (Instantiate(shot, transform.position + offset2, transform.rotation)) as Bullet;
+                    Bullet Copy3 = (Instantiate(shot, transform.position + offset3, transform.rotation)) as Bullet;
+                    Bullet Copy4 = (Instantiate(shot2, transform.position + offset4, transform.rotation)) as Bullet;
+                    Bullet Copy5 = (Instantiate(shot2, transform.position + offset5, transform.rotation)) as Bullet;
+                    counter = 0;
+                    a.on = true;
+                    b.on = true;
+                }
             }
         }
     }
+
+
 }

@@ -47,6 +47,19 @@ public class Enemy : MonoBehaviour {
         {
             coll.gameObject.transform.position = new Vector3(-6, 2, 0);
             cont.lives--;
+            cont.bombs = 3;
+            if (cont.power < 2f)
+            {
+                cont.power = 1f;
+            }
+            else if (cont.power >= 2f)
+            {
+                cont.power -= 1f;
+            }
+        }
+        if (coll.gameObject.tag == "invulnShot")
+        {
+            hp = hp - cont.dmg;
         }
     }
 
