@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
     public Bullet shot, shot2;
     public Controller cont;
     public Orbiter a, b;
+    public LaserShot c;
 
     public SpriteRenderer spriteRenderer;
     public Sprite focus;
@@ -127,7 +128,80 @@ public class Player : MonoBehaviour {
 
     void Fire()
     {
-        if (Input.GetKey(KeyCode.Z))
+        if (Input.GetKey(KeyCode.Z) && Input.GetKey(KeyCode.LeftShift))
+        {
+            if (cont.power < 2f)
+            {
+                counter = 0;
+                a.on = false;
+                b.on = false;
+                c.on = true;
+                if (cont.laserProcTimer > 10)
+                {
+                    cont.dmg2 = 1;
+                    cont.laserProcTimer = 0;
+                }
+                else
+                {
+                    cont.dmg2 = 0;
+                    cont.laserProcTimer++;
+                }
+            }
+            else if (cont.power < 3f)
+            {
+                counter = 0;
+                a.on = false;
+                b.on = false;
+                c.on = true;
+                if (cont.laserProcTimer > 10)
+                {
+                    cont.dmg2 = 2;
+                    cont.laserProcTimer = 0;
+                }
+                else
+                {
+                    cont.dmg2 = 0;
+                    cont.laserProcTimer++;
+                }
+            }
+            else if (cont.power < 4f)
+            {
+                
+                counter = 0;
+                a.on = false;
+                b.on = false;
+                c.on = true;
+                if (cont.laserProcTimer > 10)
+                {
+                    cont.dmg2 = 3;
+                    cont.laserProcTimer = 0;
+                }
+                else
+                {
+                    cont.dmg2 = 0;
+                    cont.laserProcTimer++;
+                }
+            }
+            else if (cont.power < 5f)
+            {
+                
+                counter = 0;
+                a.on = false;
+                b.on = false;
+                c.on = true;
+                if (cont.laserProcTimer > 10)
+                {
+                    cont.dmg2 = 4;
+                    cont.laserProcTimer = 0;
+                }
+                else
+                {
+                    cont.dmg2 = 0;
+                    cont.laserProcTimer++;
+                }
+            }
+        }
+        else if (Input.GetKey(KeyCode.Z))
         {
             if (counter > 5)
             {

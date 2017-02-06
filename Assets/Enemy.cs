@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        setHP(50);
+        setHP(1000);
         upY = true;
     }
 	
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour {
 
     void setHP(int val)
     {
-        hp = 50;
+        hp = val;
     }
 
     void OnTriggerEnter2D(Collider2D coll)
@@ -57,9 +57,17 @@ public class Enemy : MonoBehaviour {
                 cont.power -= 1f;
             }
         }
+        
+    }
+
+    void OnTriggerStay2D(Collider2D coll)
+    {
         if (coll.gameObject.tag == "invulnShot")
         {
-            hp = hp - cont.dmg;
+            if (cont.laserActive)
+            {
+                hp = hp - cont.dmg2;
+            }
         }
     }
 
