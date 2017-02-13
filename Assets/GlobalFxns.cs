@@ -8,4 +8,9 @@ public static class GlobalFxns
     {
         return new Vector3(Mathf.Cos(a * Mathf.Deg2Rad), Mathf.Sin(a * Mathf.Deg2Rad), 0);
     }
+
+    public static float ToAng(Vector3 a)
+    {
+        return Mathf.Atan2(a.y, a.x) * Mathf.Rad2Deg;
+    }
 }

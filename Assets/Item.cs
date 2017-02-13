@@ -17,7 +17,7 @@ public class Item : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (cont.player.transform.position.y >= 15f)
+        if (Controller.Instance.player.transform.position.y >= 15f)
         {
             PoC();
         }
@@ -42,43 +42,57 @@ public class Item : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.tag == "PlayerHitbox")
+        if (coll.gameObject.tag == "Player")
         {
             //Points
             if (itemType == 0)
             {
                 float yval = transform.position.y;
-                cont.points += (20000 + Mathf.RoundToInt(2000 * Mathf.RoundToInt(yval)));
+                Controller.Instance.points += (20000 + Mathf.RoundToInt(2000 * Mathf.RoundToInt(yval)));
             }
             //Power
             if (itemType == 1)
             {
-                if (cont.power < 4.0f)
+                if (Controller.Instance.power < 4.0f)
                 {
-                    cont.power += .05f;
+                    Controller.Instance.power += .05f;
                 }
                 else
                 {
-                    cont.points += 1000;
+                    Controller.Instance.points += 1000;
                 }
             }
             //1Up
             if (itemType == 2)
             {
-                cont.lives++;
+                Controller.Instance.lives++;
             }
             //Bomb
-            if (itemType == 2)
+            if (itemType == 3)
             {
-                cont.bombs++;
+                Controller.Instance.bombs++;
             }
+
+            //Big Power
+            if (itemType == 4)
+            {
+                if (Controller.Instance.power < 4.0f)
+                {
+                    Controller.Instance.power += 1;
+                }
+                else
+                {
+                    Controller.Instance.points += 10000;
+                }
+            }
+
             Destroy(this.gameObject);
         }
     }
 
     void PoC()
     {
-            Vector3 direction = new Vector3(cont.player.transform.position.x - this.transform.position.x, cont.player.transform.position.y - this.transform.position.y,0);
+            Vector3 direction = new Vector3(Controller.Instance.player.transform.position.x - this.transform.position.x, Controller.Instance.player.transform.position.y - this.transform.position.y,0);
             direction = direction.normalized;
             transform.position += direction * PoCGrav;
     }
