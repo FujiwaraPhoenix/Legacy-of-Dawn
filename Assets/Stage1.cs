@@ -6,6 +6,7 @@ public class Stage1 : MonoBehaviour {
     public Enemy a;
     public Boss1 b;
     public Player p;
+    public int bombCD, bombTimer;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class Stage1 : MonoBehaviour {
             StopAllCoroutines();
             Controller.Instance.clearScreen = true;
         }
+        BombActive();
 	}
 
     IEnumerator stage1()
@@ -28,7 +30,7 @@ public class Stage1 : MonoBehaviour {
 
         //Initial Wave: 7 fairies, slight V formation.
         Enemy mob1 = Instantiate(a, new Vector3(-4, 21, 0), Quaternion.identity);
-        mob1.setParameters(1, .02f, 0, .02f, .02f, 1, false, 10);
+        mob1.setParameters(1, .02f, 0, .02f, .02f, 1, false, 5);
         mob1.direction = new Vector3(0, -1, 0);
         mob1.itemDrop = 2;
 
@@ -36,8 +38,8 @@ public class Stage1 : MonoBehaviour {
 
         Enemy mob2 = Instantiate(a, new Vector3(-2, 21, 0), Quaternion.identity);
         Enemy mob3 = Instantiate(a, new Vector3(-6, 21, 0), Quaternion.identity);
-        mob2.setParameters(1, .02f, 0, .02f, .02f, 1, false, 10);
-        mob3.setParameters(1, .02f, 0, .02f, .02f, 1, false, 10);
+        mob2.setParameters(1, .02f, 0, .02f, .02f, 1, false, 5);
+        mob3.setParameters(1, .02f, 0, .02f, .02f, 1, false, 5);
         mob2.direction = new Vector3(0, -1, 0);
         mob3.direction = new Vector3(0, -1, 0);
         mob2.itemDrop = 1;
@@ -47,8 +49,8 @@ public class Stage1 : MonoBehaviour {
 
         Enemy mob4 = Instantiate(a, new Vector3(0, 21, 0), Quaternion.identity);
         Enemy mob5 = Instantiate(a, new Vector3(-8, 21, 0), Quaternion.identity);
-        mob4.setParameters(1, .02f, 0, .02f, .02f, 1, false, 10);
-        mob5.setParameters(1, .02f, 0, .02f, .02f, 1, false, 10);
+        mob4.setParameters(1, .02f, 0, .02f, .02f, 1, false, 5);
+        mob5.setParameters(1, .02f, 0, .02f, .02f, 1, false, 5);
         mob4.direction = new Vector3(0, -1, 0);
         mob5.direction = new Vector3(0, -1, 0);
         mob4.itemDrop = 2;
@@ -58,8 +60,8 @@ public class Stage1 : MonoBehaviour {
 
         Enemy mob6 = Instantiate(a, new Vector3(2, 21, 0), Quaternion.identity);
         Enemy mob7 = Instantiate(a, new Vector3(-10, 21, 0), Quaternion.identity);
-        mob6.setParameters(1, .02f, 0, .02f, .02f, 1, false, 10);
-        mob7.setParameters(1, .02f, 0, .02f, .02f, 1, false, 10);
+        mob6.setParameters(1, .02f, 0, .02f, .02f, 1, false, 5);
+        mob7.setParameters(1, .02f, 0, .02f, .02f, 1, false, 5);
         mob6.direction = new Vector3(0, -1, 0);
         mob7.direction = new Vector3(0, -1, 0);
         mob6.itemDrop = 1;
@@ -70,51 +72,51 @@ public class Stage1 : MonoBehaviour {
         //Wave 2: 7 fairies from top right. Move down, then curve to left.
 
         Enemy mob8 = Instantiate(a, new Vector3(1, 21, 0), Quaternion.identity);
-        mob8.setParameters(1, .04f, 0, .04f, .04f, 1, false, 15);
+        mob8.setParameters(1, .04f, 0, .04f, .04f, 1, false, 10);
         mob8.direction = new Vector3(0, -1, 0);
         mob8.itemDrop = 2;
         mob8.shotType = 1;
-        mob8.shotDelay = 45;
+        mob8.shotDelay = 90;
         mob8.shotTimer = -30;
 
         yield return new WaitForSeconds(.75f);
 
         Enemy mob9 = Instantiate(a, new Vector3(1, 21, 0), Quaternion.identity);
-        mob9.setParameters(1, .04f, 0, .04f, .04f, 1, false, 15);
+        mob9.setParameters(1, .04f, 0, .04f, .04f, 1, false, 10);
         mob9.direction = new Vector3(0, -1, 0);
         mob8.itemDrop = 1;
         mob9.shotType = 1;
-        mob9.shotDelay = 45;
+        mob9.shotDelay = 90;
         mob9.shotTimer = -30;
 
         yield return new WaitForSeconds(.75f);
 
         Enemy mob10 = Instantiate(a, new Vector3(1, 21, 0), Quaternion.identity);
-        mob10.setParameters(1, .04f, 0, .04f, .04f, 1, false, 15);
+        mob10.setParameters(1, .04f, 0, .04f, .04f, 1, false, 10);
         mob10.direction = new Vector3(0, -1, 0);
         mob10.itemDrop = 2;
         mob10.shotType = 1;
-        mob10.shotDelay = 45;
+        mob10.shotDelay = 90;
         mob10.shotTimer = -30;
 
         yield return new WaitForSeconds(.75f);
 
         Enemy mob11 = Instantiate(a, new Vector3(1, 21, 0), Quaternion.identity);
-        mob11.setParameters(1, .04f, 0, .04f, .04f, 1, false, 15);
+        mob11.setParameters(1, .04f, 0, .04f, .04f, 1, false, 10);
         mob11.direction = new Vector3(0, -1, 0);
         mob11.itemDrop = 1;
         mob11.shotType = 1;
-        mob11.shotDelay = 45;
+        mob11.shotDelay = 90;
         mob11.shotTimer = -30;
 
         yield return new WaitForSeconds(.75f);
 
         Enemy mob12 = Instantiate(a, new Vector3(1, 21, 0), Quaternion.identity);
-        mob12.setParameters(1, .04f, 0, .04f, .04f, 1, false, 15);
+        mob12.setParameters(1, .04f, 0, .04f, .04f, 1, false, 10);
         mob12.direction = new Vector3(0, -1, 0);
         mob12.itemDrop = 2;
         mob12.shotType = 1;
-        mob12.shotDelay = 45;
+        mob12.shotDelay = 90;
         mob12.shotTimer = -30;
 
         mob8.mvtFxn = 2;
@@ -122,7 +124,7 @@ public class Stage1 : MonoBehaviour {
         mob8.moveTimer = 30;
 
         Enemy altMob1 = Instantiate(a, new Vector3(-8, 22, 0), Quaternion.identity);
-        altMob1.setParameters(1, .045f, 0, .045f, .045f, 1, false, 50);
+        altMob1.setParameters(1, .045f, 0, .045f, .045f, 1, false, 30);
         altMob1.direction = new Vector3(0, -1, 0);
         altMob1.noForCirc = 12;
         altMob1.shotVel = .05f;
@@ -135,11 +137,11 @@ public class Stage1 : MonoBehaviour {
         yield return new WaitForSeconds(.75f);
 
         Enemy mob13 = Instantiate(a, new Vector3(1, 21, 0), Quaternion.identity);
-        mob13.setParameters(1, .04f, 0, .04f, .04f, 1, false, 15);
+        mob13.setParameters(1, .04f, 0, .04f, .04f, 1, false, 10);
         mob13.direction = new Vector3(0, -1, 0);
         mob13.itemDrop = 1;
         mob13.shotType = 1;
-        mob13.shotDelay = 45;
+        mob13.shotDelay = 90;
         mob13.shotTimer = -30;
 
         mob9.mvtFxn = 2;
@@ -153,7 +155,7 @@ public class Stage1 : MonoBehaviour {
         mob14.direction = new Vector3(0, -1, 0);
         mob14.itemDrop = 2;
         mob14.shotType = 1;
-        mob14.shotDelay = 45;
+        mob14.shotDelay = 90;
         mob14.shotTimer = -30;
 
         mob10.mvtFxn = 2;
@@ -191,51 +193,51 @@ public class Stage1 : MonoBehaviour {
 
         //Wave 3: Mirror of wave 2
         Enemy mob15 = Instantiate(a, new Vector3(-9, 21, 0), Quaternion.identity);
-        mob15.setParameters(1, .04f, 0, .04f, .04f, 1, false, 15);
+        mob15.setParameters(1, .04f, 0, .04f, .04f, 1, false, 10);
         mob15.direction = new Vector3(0, -1, 0);
         mob15.itemDrop = 1;
         mob15.shotType = 1;
-        mob15.shotDelay = 45;
+        mob15.shotDelay = 90;
         mob15.shotTimer = -30;
 
         yield return new WaitForSeconds(.75f);
 
         Enemy mob16 = Instantiate(a, new Vector3(-9, 21, 0), Quaternion.identity);
-        mob16.setParameters(1, .04f, 0, .04f, .04f, 1, false, 15);
+        mob16.setParameters(1, .04f, 0, .04f, .04f, 1, false, 10);
         mob16.direction = new Vector3(0, -1, 0);
         mob16.itemDrop = 2;
         mob16.shotType = 1;
-        mob16.shotDelay = 45;
+        mob16.shotDelay = 90;
         mob16.shotTimer = -30;
 
         yield return new WaitForSeconds(.75f);
 
         Enemy mob17 = Instantiate(a, new Vector3(-9, 21, 0), Quaternion.identity);
-        mob17.setParameters(1, .04f, 0, .04f, .04f, 1, false, 15);
+        mob17.setParameters(1, .04f, 0, .04f, .04f, 1, false, 10);
         mob17.direction = new Vector3(0, -1, 0);
         mob17.itemDrop = 1;
         mob17.shotType = 1;
-        mob17.shotDelay = 45;
+        mob17.shotDelay = 90;
         mob17.shotTimer = -30;
 
         yield return new WaitForSeconds(.75f);
 
         Enemy mob18 = Instantiate(a, new Vector3(-9, 21, 0), Quaternion.identity);
-        mob18.setParameters(1, .04f, 0, .04f, .04f, 1, false, 15);
+        mob18.setParameters(1, .04f, 0, .04f, .04f, 1, false, 10);
         mob18.direction = new Vector3(0, -1, 0);
         mob18.itemDrop = 2;
         mob18.shotType = 1;
-        mob18.shotDelay = 45;
+        mob18.shotDelay = 90;
         mob18.shotTimer = -30;
 
         yield return new WaitForSeconds(.75f);
 
         Enemy mob19 = Instantiate(a, new Vector3(-9, 21, 0), Quaternion.identity);
-        mob19.setParameters(1, .04f, 0, .04f, .04f, 1, false, 15);
+        mob19.setParameters(1, .04f, 0, .04f, .04f, 1, false, 10);
         mob19.direction = new Vector3(0, -1, 0);
         mob19.itemDrop = 1;
         mob19.shotType = 1;
-        mob19.shotDelay = 45;
+        mob19.shotDelay = 90;
         mob19.shotTimer = -30;
 
         mob15.mvtFxn = 2;
@@ -243,7 +245,7 @@ public class Stage1 : MonoBehaviour {
         mob15.moveTimer = 30;
 
         Enemy altMob2 = Instantiate(a, new Vector3(0, 22, 0), Quaternion.identity);
-        altMob2.setParameters(1, .045f, 0, .045f, .045f, 1, false, 50);
+        altMob2.setParameters(1, .045f, 0, .045f, .045f, 1, false, 30);
         altMob2.direction = new Vector3(0, -1, 0);
         altMob2.noForCirc = 12;
         altMob2.shotVel = .05f;
@@ -256,11 +258,11 @@ public class Stage1 : MonoBehaviour {
         yield return new WaitForSeconds(.75f);
 
         Enemy mob20 = Instantiate(a, new Vector3(-9, 21, 0), Quaternion.identity);
-        mob20.setParameters(1, .04f, 0, .04f, .04f, 1, false, 15);
+        mob20.setParameters(1, .04f, 0, .04f, .04f, 1, false, 10);
         mob20.direction = new Vector3(0, -1, 0);
         mob20.itemDrop = 2;
         mob20.shotType = 1;
-        mob20.shotDelay = 45;
+        mob20.shotDelay = 90;
         mob20.shotTimer = -30;
 
         mob16.mvtFxn = 2;
@@ -274,7 +276,7 @@ public class Stage1 : MonoBehaviour {
         mob21.direction = new Vector3(0, -1, 0);
         mob21.itemDrop = 1;
         mob21.shotType = 1;
-        mob21.shotDelay = 45;
+        mob21.shotDelay = 90;
         mob21.shotTimer = -30;
 
         mob17.mvtFxn = 2;
@@ -311,7 +313,7 @@ public class Stage1 : MonoBehaviour {
 
         //Wave 4: Bigger fairy down center
         Enemy mob22 = Instantiate(a, new Vector3(-4, 21, 0), Quaternion.identity);
-        mob22.setParameters(1, .025f, 0, .025f, .025f, 1, false, 250);
+        mob22.setParameters(1, .025f, 0, .025f, .025f, 1, false, 200);
         mob22.direction = new Vector3(0, -1, 0);
         mob22.transform.localScale *= 2;
         mob22.itemDrop = 2;
@@ -367,6 +369,7 @@ public class Stage1 : MonoBehaviour {
         //Mini-midboss
 
         Enemy midboss1 = Instantiate(a, new Vector3(-4, 21, 0), Quaternion.identity);
+        midboss1.transform.localScale *= 1.5f;
         midboss1.setParameters(1, .03f, 0, .03f, .03f, 1, false, 500);
         midboss1.setShotParameters(4, .01f, 0, .01f, .01f, 1, false);
         midboss1.offsetInc = 5;
@@ -380,6 +383,14 @@ public class Stage1 : MonoBehaviour {
         midboss1.ptInRotation = 1;
 
         yield return new WaitForSeconds(25);
+
+        Controller.Instance.clearScreen = true;
+
+        yield return new WaitForSeconds(2);
+
+        Controller.Instance.clearScreen = false;
+
+        yield return new WaitForSeconds(2);
 
         //Waves 6-10: Waves enter from left/right of screen. Move diagonally, shoot at player location.
         //From right
@@ -437,7 +448,7 @@ public class Stage1 : MonoBehaviour {
 
         Enemy mob28 = Instantiate(a, new Vector3(-12, 16, 0), Quaternion.identity);
         mob28.setParameters(1, .03f, 0, .03f, .03f, 1, false, 25);
-        mob28.direction = GlobalFxns.ToVect(-45);
+        mob28.direction = GlobalFxns.ToVect(-30);
         mob28.itemDrop = 1;
         mob28.shotType = 1;
         mob28.shotDelay = 90;
@@ -447,7 +458,7 @@ public class Stage1 : MonoBehaviour {
 
         Enemy mob29 = Instantiate(a, new Vector3(-12, 16, 0), Quaternion.identity);
         mob29.setParameters(1, .03f, 0, .03f, .03f, 1, false, 25);
-        mob29.direction = GlobalFxns.ToVect(-45);
+        mob29.direction = GlobalFxns.ToVect(-30);
         mob29.itemDrop = 2;
         mob29.shotType = 1;
         mob29.shotDelay = 90;
@@ -457,7 +468,7 @@ public class Stage1 : MonoBehaviour {
 
         Enemy mob30 = Instantiate(a, new Vector3(-12, 16, 0), Quaternion.identity);
         mob30.setParameters(1, .03f, 0, .03f, .03f, 1, false, 25);
-        mob30.direction = GlobalFxns.ToVect(-45);
+        mob30.direction = GlobalFxns.ToVect(-30);
         mob30.itemDrop = 1;
         mob30.shotType = 1;
         mob30.shotDelay = 90;
@@ -467,7 +478,7 @@ public class Stage1 : MonoBehaviour {
 
         Enemy mob31 = Instantiate(a, new Vector3(-12, 16, 0), Quaternion.identity);
         mob31.setParameters(1, .03f, 0, .03f, .03f, 1, false, 25);
-        mob31.direction = GlobalFxns.ToVect(-45);
+        mob31.direction = GlobalFxns.ToVect(-30);
         mob31.itemDrop = 1;
         mob31.shotType = 2;
         mob31.shotDelay = 90;
@@ -477,7 +488,7 @@ public class Stage1 : MonoBehaviour {
 
         Enemy mob32 = Instantiate(a, new Vector3(-12, 16, 0), Quaternion.identity);
         mob32.setParameters(1, .03f, 0, .03f, .03f, 1, false, 25);
-        mob32.direction = GlobalFxns.ToVect(-45);
+        mob32.direction = GlobalFxns.ToVect(-30);
         mob32.itemDrop = 2;
         mob32.shotType = 1;
         mob32.shotDelay = 90;
@@ -540,7 +551,7 @@ public class Stage1 : MonoBehaviour {
         //Left again
         Enemy mob38 = Instantiate(a, new Vector3(-12, 16, 0), Quaternion.identity);
         mob38.setParameters(1, .03f, 0, .03f, .03f, 1, false, 25);
-        mob38.direction = GlobalFxns.ToVect(-45);
+        mob38.direction = GlobalFxns.ToVect(-30);
         mob38.itemDrop = 1;
         mob38.shotType = 1;
         mob38.shotDelay = 90;
@@ -550,7 +561,7 @@ public class Stage1 : MonoBehaviour {
 
         Enemy mob39 = Instantiate(a, new Vector3(-12, 16, 0), Quaternion.identity);
         mob39.setParameters(1, .03f, 0, .03f, .03f, 1, false, 25);
-        mob39.direction = GlobalFxns.ToVect(-45);
+        mob39.direction = GlobalFxns.ToVect(-30);
         mob39.itemDrop = 2;
         mob39.shotType = 1;
         mob39.shotDelay = 90;
@@ -560,7 +571,7 @@ public class Stage1 : MonoBehaviour {
 
         Enemy mob40 = Instantiate(a, new Vector3(-12, 16, 0), Quaternion.identity);
         mob40.setParameters(1, .03f, 0, .03f, .03f, 1, false, 25);
-        mob40.direction = GlobalFxns.ToVect(-45);
+        mob40.direction = GlobalFxns.ToVect(-30);
         mob40.itemDrop = 1;
         mob40.shotType = 1;
         mob40.shotDelay = 90;
@@ -570,7 +581,7 @@ public class Stage1 : MonoBehaviour {
 
         Enemy mob41 = Instantiate(a, new Vector3(-12, 16, 0), Quaternion.identity);
         mob41.setParameters(1, .03f, 0, .03f, .03f, 1, false, 25);
-        mob41.direction = GlobalFxns.ToVect(-45);
+        mob41.direction = GlobalFxns.ToVect(-30);
         mob41.itemDrop = 1;
         mob41.shotType = 2;
         mob41.shotDelay = 90;
@@ -580,7 +591,7 @@ public class Stage1 : MonoBehaviour {
 
         Enemy mob42 = Instantiate(a, new Vector3(-12, 16, 0), Quaternion.identity);
         mob42.setParameters(1, .03f, 0, .03f, .03f, 1, false, 25);
-        mob42.direction = GlobalFxns.ToVect(-45);
+        mob42.direction = GlobalFxns.ToVect(-30);
         mob42.itemDrop = 2;
         mob42.shotType = 1;
         mob42.shotDelay = 90;
@@ -602,5 +613,33 @@ public class Stage1 : MonoBehaviour {
 
         //Spawn Boss
         Boss1 boss = Instantiate(b, new Vector3(-4, 22, 0), Quaternion.identity);
+    }
+
+    void BombActive()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            if (Controller.Instance.bombs > 0)
+            {
+                if (bombCD > 60)
+                {
+                    Controller.Instance.bombs--;
+                    Controller.Instance.bombing = true;
+                    bombTimer = 60;
+                }
+            }
+        }
+        if (bombCD < 60)
+        {
+            bombCD++;
+        }
+        if (bombTimer > 0)
+        {
+            bombTimer--;
+        }
+        else
+        {
+            Controller.Instance.bombing = false;
+        }
     }
 }

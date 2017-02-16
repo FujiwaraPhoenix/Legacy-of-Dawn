@@ -40,11 +40,11 @@ public class EnemyShot : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.tag == "Player")
+        if (coll.gameObject.tag == "PlayerHitbox")
         {
             if (!Controller.Instance.invuln)
             {
-                coll.gameObject.transform.position = new Vector3(-4, 2, 0);
+                Controller.Instance.player.transform.position= new Vector3(-4, 2, 0);
                 Controller.Instance.lives--;
                 Controller.Instance.bombs = 3;
                 if (Controller.Instance.power < 2f)
@@ -120,7 +120,7 @@ public class EnemyShot : MonoBehaviour {
 
     public void SD()
     {
-        if (Controller.Instance.clearScreen)
+        if (Controller.Instance.clearScreen || Controller.Instance.bombing)
         {
             Destroy(this.gameObject);
         }

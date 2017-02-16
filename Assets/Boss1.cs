@@ -52,7 +52,17 @@ public class Boss1 : Enemy {
         {
             MovetoPos();
         }
+        
+        SelfDestruct();
 	}
+
+    public void SelfDestruct()
+    {
+        if (Controller.Instance.bombing)
+        {
+            hp -= 5;
+        }
+    }
 
     //Nonspell 1
     void Nonspell1()
@@ -204,9 +214,11 @@ public class Boss1 : Enemy {
                 hp = newHP;
                 offset = 0;
                 returnToPos();
+                StartCoroutine(screenWipe());
             }
             else
             {
+                StartCoroutine(screenWipe());
                 Destroy(this.gameObject);
             }
         }
@@ -269,4 +281,11 @@ public class Boss1 : Enemy {
             justSpawned = false;
         }
     } 
+
+    public IEnumerator screenWipe()
+    {
+        Controller.Instance.clearScreen = true;
+        yield return new WaitForSeconds(1);
+        Controller.Instance.clearScreen = false;
+    }
 }

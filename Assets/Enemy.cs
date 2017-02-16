@@ -75,6 +75,10 @@ public class Enemy : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        if (Controller.Instance.bombing)
+        {
+            hp -= 5;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D coll)
@@ -84,11 +88,11 @@ public class Enemy : MonoBehaviour
             Destroy(coll.gameObject);
             hp = hp - Controller.Instance.dmg;
         }
-        if (coll.gameObject.tag == "Player")
+        if (coll.gameObject.tag == "PlayerHitbox")
         {
             if (!Controller.Instance.invuln)
             {
-                coll.gameObject.transform.position = new Vector3(-4, 2, 0);
+                Controller.Instance.player.transform.position = new Vector3(-4, 2, 0);
                 Controller.Instance.lives--;
                 Controller.Instance.bombs = 3;
                 if (Controller.Instance.power < 2f)
