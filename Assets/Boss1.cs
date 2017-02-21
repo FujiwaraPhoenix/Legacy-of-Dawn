@@ -15,46 +15,50 @@ public class Boss1 : Enemy {
     }
 
     // Update is called once per frame
-    void Update () {
-        if (!justSpawned)
+    void Update()
+    {
+        if (!Controller.Instance.paused)
         {
-            if (currentStg == 1)
+            if (!justSpawned)
             {
-                Nonspell1();
-                randomMove();
-                timer++;
-                timer2++;
-                spellChange(1500);
+                if (currentStg == 1)
+                {
+                    Nonspell1();
+                    randomMove();
+                    timer++;
+                    timer2++;
+                    spellChange(1500);
+                }
+                if (currentStg == 2)
+                {
+                    Spell1();
+                    timer++;
+                    spellChange(1500);
+                }
+                if (currentStg == 3)
+                {
+                    Nonspell2();
+                    randomMove();
+                    timer++;
+                    timer2++;
+                    spellChange(1500);
+                }
+                if (currentStg == 4)
+                {
+                    Spell2();
+                    timer++;
+                    timer2++;
+                    spellChange(1500);
+                }
             }
-            if (currentStg == 2)
+            else
             {
-                Spell1();
-                timer++;
-                spellChange(1500);
+                MovetoPos();
             }
-            if (currentStg == 3)
-            {
-                Nonspell2();
-                randomMove();
-                timer++;
-                timer2++;
-                spellChange(1500);
-            }
-            if (currentStg == 4)
-            {
-                Spell2();
-                timer++;
-                timer2++;
-                spellChange(1500);
-            }
+
+            SelfDestruct();
         }
-        else
-        {
-            MovetoPos();
-        }
-        
-        SelfDestruct();
-	}
+    }
 
     public void SelfDestruct()
     {
@@ -168,7 +172,7 @@ public class Boss1 : Enemy {
         }
     }
 
-    void makeCircle(int number, float offset, float vel, float accel, float minv, float maxv, int tickrate, bool decelYN)
+    new void makeCircle(int number, float offset, float vel, float accel, float minv, float maxv, int tickrate, bool decelYN)
     {
         float betAng = 360 / number;
         //Creates number of bullets
@@ -219,6 +223,7 @@ public class Boss1 : Enemy {
             else
             {
                 StartCoroutine(screenWipe());
+                Controller.Instance.bossDead = true;
                 Destroy(this.gameObject);
             }
         }

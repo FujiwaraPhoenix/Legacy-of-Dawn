@@ -6,7 +6,7 @@ public class Stage1 : MonoBehaviour {
     public Enemy a;
     public Boss1 b;
     public Player p;
-    public int bombCD, bombTimer;
+
 
     void Start()
     {
@@ -21,7 +21,6 @@ public class Stage1 : MonoBehaviour {
             StopAllCoroutines();
             Controller.Instance.clearScreen = true;
         }
-        BombActive();
 	}
 
     IEnumerator stage1()
@@ -615,31 +614,5 @@ public class Stage1 : MonoBehaviour {
         Boss1 boss = Instantiate(b, new Vector3(-4, 22, 0), Quaternion.identity);
     }
 
-    void BombActive()
-    {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            if (Controller.Instance.bombs > 0)
-            {
-                if (bombCD > 60)
-                {
-                    Controller.Instance.bombs--;
-                    Controller.Instance.bombing = true;
-                    bombTimer = 60;
-                }
-            }
-        }
-        if (bombCD < 60)
-        {
-            bombCD++;
-        }
-        if (bombTimer > 0)
-        {
-            bombTimer--;
-        }
-        else
-        {
-            Controller.Instance.bombing = false;
-        }
-    }
+
 }

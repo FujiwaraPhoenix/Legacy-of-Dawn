@@ -5,16 +5,17 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    public int hp, timer, timerA;
+    public int hp, timer, timerA, timerB, timerC;
     public bool upY;
     public BoxCollider2D hitbox;
+    public CircleCollider2D altHitbox;
     public Item power, point, bigPower;
     public Vector3 direction;
     public EnemyShot bullet, bulletGroupA;
-    public float velocity, acceleration, minvelocity, maxvelocity, playerX, playerY, deltaAngle;
+    public float velocity, acceleration, minvelocity, maxvelocity, playerX, playerY, deltaAngle, amplitude;
     public float shotVel, shotAccel, shotMinV, shotMaxV;
     public int mvtFxn, shotTimer, ticks, itemDrop, moveTimer, shotType, shotDelay, noForCirc, offsetVal, shotTicks, offsetInc, ptInRotation;
-    public bool decelerating, shotDecel;
+    public bool decelerating, shotDecel, lr;
 
     // Use this for initialization
     void Start()
@@ -25,43 +26,55 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (mvtFxn == 1)
+        if (!Controller.Instance.paused)
         {
-            linearMove(direction, shotVel, shotAccel, shotMinV, shotMaxV, shotTicks);
+            if (mvtFxn == 1)
+            {
+                linearMove(direction, shotVel, shotAccel, shotMinV, shotMaxV, shotTicks);
+            }
+            if (mvtFxn == 2)
+            {
+                curveMove(deltaAngle);
+                moveTimer--;
+            }
+            if (mvtFxn == 3)
+            {
+                sinMove(lr, velocity, acceleration, minvelocity, maxvelocity, ticks, amplitude);
+                timerC++;
+            }
+            if (shotType == 1)
+            {
+                AimShot();
+            }
+            if (shotType == 2)
+            {
+                AimShotgun();
+            }
+            if (shotType == 3)
+            {
+                makeCircle(noForCirc, offsetVal, shotVel, shotAccel, shotMinV, shotMaxV, shotTicks, shotDecel);
+                offsetVal += offsetInc;
+            }
+            if (shotType == 4)
+            {
+                midboss1();
+            }
+            if (shotType == 5)
+            {
+                shootDown();
+            }
+            if (hp < 1)
+            {
+                createItem();
+                if (shotType == 6)
+                {
+                    suicideFire();
+                }
+                Destroy(this.gameObject);
+            }
+            shotTimer++;
+            SD();
         }
-        if (mvtFxn == 2)
-        {
-            curveMove(deltaAngle);
-            moveTimer--;
-        }
-        if (shotType == 1)
-        {
-            AimShot();
-        }
-        if (shotType == 2)
-        {
-            AimShotgun();
-        }
-        if (shotType == 3)
-        {
-            makeCircle(noForCirc, offsetVal, shotVel, shotAccel, shotMinV, shotMaxV, shotTicks, shotDecel);
-            offsetVal += offsetInc;
-        }
-        if (shotType == 4)
-        {
-            midboss1();
-        }
-        if (shotType == 5)
-        {
-            shootDown();
-        }
-        if (hp < 1)
-        {
-            createItem();
-            Destroy(this.gameObject);
-        }
-        shotTimer++;
-        SD();
     }
 
     void setHP(int val)
@@ -277,7 +290,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void makeCircle(int number, float offset, float vel, float accel, float minv, float maxv, int tickrate, bool decelYN)
+    public void makeCircle(int number, float offset, float vel, float accel, float minv, float maxv, int tickrate, bool decelYN)
     {
         float betAng = 360 / number;
         //Creates number of bullets
@@ -372,6 +385,74 @@ public class Enemy : MonoBehaviour
             bullet.direction = new Vector3(0, -1, 0);
             bullet.mvtFxn = 1;
             shotTimer = 0;
+        }
+    }
+
+    void sinMove(bool left, float vel, float accel, float minvel, float maxvel, int tickrate, float amp)
+    {
+        if (timer > tickrate)
+        {
+            timer = 0;
+            if (decelerating)
+            {
+                if (vel > minvel)
+                {
+                    if (vel + accel < minvel)
+                    {
+                        velocity = minvel;
+                    }
+                    else
+                    {
+                        velocity += accel;
+                    }
+                }
+            }
+            else
+            {
+                if (vel < maxvel)
+                {
+                    if (vel + accel > maxvel)
+                    {
+                        velocity = maxvel;
+                    }
+                    else
+                    {
+                        velocity += accel;
+                    }
+                }
+            }
+        }
+        if (timerC > tickrate)
+        {
+            if (left)
+            {
+                transform.position += new Vector3(-1 * vel, Mathf.Sin(timerB) * amp);
+                timerB++;
+            }
+            else
+            {
+                transform.position += new Vector3(vel, Mathf.Sin(timerB) * amp);
+                timerB++;
+            }
+            timerC = 0;
+        }
+        if (transform.position.y < -5f || transform.position.y > 22f || transform.position.x < -18 || transform.position.x > 7f)
+        {
+            Object.Destroy(this.gameObject);
+        }
+    }
+
+    void suicideFire()
+    {
+        float tempX = Controller.Instance.player.transform.position.x;
+        float tempY = Controller.Instance.player.transform.position.y;
+        Vector3 rota = (new Vector3(tempX - this.transform.position.x, tempY - this.transform.position.y, 0));
+        float angle = GlobalFxns.ToAng(rota);
+        float spdUp = .05f;
+        for (int i = 0; i < 5; i++){
+            makeCircle(5, angle, spdUp, 0, spdUp, spdUp, 1, false);
+            spdUp += .03f;
+            shotTimer++;
         }
     }
 }

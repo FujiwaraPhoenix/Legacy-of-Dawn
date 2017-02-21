@@ -15,6 +15,7 @@ public class Player : MonoBehaviour {
     public int charY;
     public int counter;
     public int invulnTimer;
+    public int bombCD, bombTimer;
     public bool dead;
 
 	// Use this for initialization
@@ -24,10 +25,17 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Movement();
-        Fire();
-        iFrame();
-        counter++;
+        if (!Controller.Instance.paused)
+        {
+            Movement();
+            Fire();
+            iFrame();
+            counter++;
+            if (!dead)
+            {
+                BombActive();
+            }
+        }
 	}
 
 
@@ -140,74 +148,74 @@ public class Player : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.Z) && Input.GetKey(KeyCode.LeftShift))
             {
-                if (cont.power < 2f)
+                if (Controller.Instance.power < 2f)
                 {
                     counter = 0;
                     a.on = false;
                     b.on = false;
                     c.on = true;
-                    if (cont.laserProcTimer > 10)
+                    if (Controller.Instance.laserProcTimer > 10)
                     {
-                        cont.dmg2 = 2;
-                        cont.laserProcTimer = 0;
+                        Controller.Instance.dmg2 = 2;
+                        Controller.Instance.laserProcTimer = 0;
                     }
                     else
                     {
-                        cont.dmg2 = 0;
-                        cont.laserProcTimer++;
+                        Controller.Instance.dmg2 = 0;
+                        Controller.Instance.laserProcTimer++;
                     }
                 }
-                else if (cont.power < 3f)
+                else if (Controller.Instance.power < 3f)
                 {
                     counter = 0;
                     a.on = false;
                     b.on = false;
                     c.on = true;
-                    if (cont.laserProcTimer > 10)
+                    if (Controller.Instance.laserProcTimer > 10)
                     {
-                        cont.dmg2 = 4;
-                        cont.laserProcTimer = 0;
+                        Controller.Instance.dmg2 = 4;
+                        Controller.Instance.laserProcTimer = 0;
                     }
                     else
                     {
-                        cont.dmg2 = 0;
-                        cont.laserProcTimer++;
+                        Controller.Instance.dmg2 = 0;
+                        Controller.Instance.laserProcTimer++;
                     }
                 }
-                else if (cont.power < 4f)
+                else if (Controller.Instance.power < 4f)
                 {
 
                     counter = 0;
                     a.on = false;
                     b.on = false;
                     c.on = true;
-                    if (cont.laserProcTimer > 10)
+                    if (Controller.Instance.laserProcTimer > 10)
                     {
-                        cont.dmg2 = 6;
-                        cont.laserProcTimer = 0;
+                        Controller.Instance.dmg2 = 6;
+                        Controller.Instance.laserProcTimer = 0;
                     }
                     else
                     {
-                        cont.dmg2 = 0;
-                        cont.laserProcTimer++;
+                        Controller.Instance.dmg2 = 0;
+                        Controller.Instance.laserProcTimer++;
                     }
                 }
-                else if (cont.power < 5f)
+                else if (Controller.Instance.power < 5f)
                 {
 
                     counter = 0;
                     a.on = false;
                     b.on = false;
                     c.on = true;
-                    if (cont.laserProcTimer > 10)
+                    if (Controller.Instance.laserProcTimer > 10)
                     {
-                        cont.dmg2 = 8;
-                        cont.laserProcTimer = 0;
+                        Controller.Instance.dmg2 = 8;
+                        Controller.Instance.laserProcTimer = 0;
                     }
                     else
                     {
-                        cont.dmg2 = 0;
-                        cont.laserProcTimer++;
+                        Controller.Instance.dmg2 = 0;
+                        Controller.Instance.laserProcTimer++;
                     }
                 }
             }
@@ -215,7 +223,7 @@ public class Player : MonoBehaviour {
             {
                 if (counter > 2)
                 {
-                    if (cont.power < 2f)
+                    if (Controller.Instance.power < 2f)
                     {
                         Vector3 offset1 = new Vector3(.25f, 0, 0);
                         Vector3 offset2 = new Vector3(-.25f, 0, 0);
@@ -225,7 +233,7 @@ public class Player : MonoBehaviour {
                         a.on = false;
                         b.on = false;
                     }
-                    else if (cont.power < 3f)
+                    else if (Controller.Instance.power < 3f)
                     {
                         Vector3 offset1 = new Vector3(.25f, 0, 0);
                         Vector3 offset2 = new Vector3(-.25f, 0, 0);
@@ -241,7 +249,7 @@ public class Player : MonoBehaviour {
                         a.on = false;
                         b.on = false;
                     }
-                    else if (cont.power < 4f)
+                    else if (Controller.Instance.power < 4f)
                     {
                         Vector3 offset1 = new Vector3(.25f, 0, 0);
                         Vector3 offset2 = new Vector3(-.25f, 0, 0);
@@ -257,7 +265,7 @@ public class Player : MonoBehaviour {
                         a.on = true;
                         b.on = false;
                     }
-                    else if (cont.power < 5f)
+                    else if (Controller.Instance.power < 5f)
                     {
                         Vector3 offset1 = new Vector3(.25f, 0, 0);
                         Vector3 offset2 = new Vector3(-.25f, 0, 0);
@@ -280,7 +288,7 @@ public class Player : MonoBehaviour {
 
     void iFrame()
     {
-        if (cont.invuln)
+        if (Controller.Instance.invuln)
         {
             if (invulnTimer < 60)
             {
@@ -288,9 +296,37 @@ public class Player : MonoBehaviour {
             }
             else
             {
-                cont.invuln = false;
+                Controller.Instance.invuln = false;
                 invulnTimer = 0;
             }
+        }
+    }
+
+    void BombActive()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            if (Controller.Instance.bombs > 0)
+            {
+                if (bombCD > 60)
+                {
+                    Controller.Instance.bombs--;
+                    Controller.Instance.bombing = true;
+                    bombTimer = 60;
+                }
+            }
+        }
+        if (bombCD < 61)
+        {
+            bombCD++;
+        }
+        if (bombTimer > 0)
+        {
+            bombTimer--;
+        }
+        else
+        {
+            Controller.Instance.bombing = false;
         }
     }
 }

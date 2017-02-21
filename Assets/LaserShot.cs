@@ -15,10 +15,13 @@ public class LaserShot : Bullet {
 	
 	// Update is called once per frame
 	void Update () {
-        onoff();
-        cont.laserProcTimer++;
-        Fire();
-        cont.laserActive = on;
+        if (!Controller.Instance.paused)
+        {
+            onoff();
+            Controller.Instance.laserProcTimer++;
+            Fire();
+            Controller.Instance.laserActive = on;
+        }
     }
 
     void onoff()

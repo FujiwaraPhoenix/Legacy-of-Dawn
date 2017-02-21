@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyShot : MonoBehaviour {
     public Vector3 direction;
-    public float velocity, acceleration, minvelocity, maxvelocity, playerX, playerY;
-    public int mvtFxn, timer, ticks;
-    public bool decelerating;
+    public float velocity, acceleration, minvelocity, maxvelocity, playerX, playerY, amplitude;
+    public int mvtFxn, timer, timer2, timer3, ticks;
+    public bool decelerating, lr;
 
     // Use this for initialization
     void Start() {
@@ -15,18 +15,26 @@ public class EnemyShot : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        //move();
-        if (mvtFxn == 1)
+        if (!Controller.Instance.paused)
         {
-            linearMove(direction, velocity, acceleration, minvelocity, maxvelocity, ticks);
+            //move();
+            if (mvtFxn == 1)
+            {
+                linearMove(direction, velocity, acceleration, minvelocity, maxvelocity, ticks);
+            }
+            if (mvtFxn == 2)
+            {
+                AimAtPlayer();
+                linearMove(direction, velocity, acceleration, minvelocity, maxvelocity, ticks);
+            }
+            if (mvtFxn == 3)
+            {
+                sinMove(lr, velocity, acceleration, minvelocity, maxvelocity, ticks, amplitude);
+                timer3++;
+            }
+            timer++;
+            SD();
         }
-        if (mvtFxn == 2)
-        {
-            AimAtPlayer();
-            linearMove(direction, velocity, acceleration, minvelocity, maxvelocity, ticks);
-        }
-        timer++;
-        SD();
     }
 
     void move()
@@ -123,6 +131,60 @@ public class EnemyShot : MonoBehaviour {
         if (Controller.Instance.clearScreen || Controller.Instance.bombing)
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    void sinMove(bool left, float vel, float accel, float minvel, float maxvel, int tickrate, float amp)
+    {
+        if (timer > tickrate)
+        {
+            timer = 0;
+            if (decelerating)
+            {
+                if (vel > minvel)
+                {
+                    if (vel + accel < minvel)
+                    {
+                        velocity = minvel;
+                    }
+                    else
+                    {
+                        velocity += accel;
+                    }
+                }
+            }
+            else
+            {
+                if (vel < maxvel)
+                {
+                    if (vel + accel > maxvel)
+                    {
+                        velocity = maxvel;
+                    }
+                    else
+                    {
+                        velocity += accel;
+                    }
+                }
+            }
+        }
+        if (timer3 > tickrate)
+        {
+            if (left)
+            {
+                transform.position += new Vector3(-1 * vel, Mathf.Sin(timer2) * amp);
+                timer2++;
+            }
+            else
+            {
+                transform.position += new Vector3(vel, Mathf.Sin(timer2) * amp);
+                timer2++;
+            }
+            timer3 = 0;
+        }
+        if (transform.position.y < -5f || transform.position.y > 22f || transform.position.x < -18 || transform.position.x > 7f)
+        {
+            Object.Destroy(this.gameObject);
         }
     }
 }

@@ -10,20 +10,24 @@ public class Bullet : MonoBehaviour {
     // Use this for initialization
     void Start () {
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if (bulletType == 0)
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!Controller.Instance.paused)
         {
-            move();
+            if (bulletType == 0)
+            {
+                move();
+            }
+            if (bulletType == 1)
+            {
+                move2();
+                counter++;
+            }
+            Fire1();
         }
-        if (bulletType == 1)
-        {
-            move2();
-            counter++;
-        }
-        Fire1();
-	}
+    }
     void move()
     {
         transform.position += new Vector3(0, .25f, 0);

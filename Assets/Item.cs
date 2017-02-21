@@ -17,13 +17,16 @@ public class Item : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Controller.Instance.player.transform.position.y >= 15f)
+        if (!Controller.Instance.paused)
         {
-            PoC();
-        }
-        else
-        {
-            Move();
+            if (Controller.Instance.player.transform.position.y >= 15f)
+            {
+                PoC();
+            }
+            else
+            {
+                Move();
+            }
         }
 	}
 
