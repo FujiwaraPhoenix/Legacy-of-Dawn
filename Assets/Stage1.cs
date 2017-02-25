@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Stage1 : MonoBehaviour {
     public Enemy a;
     public Boss1 b;
     public Player p;
+    public int tilNextStg;
 
 
     void Start()
@@ -20,6 +22,14 @@ public class Stage1 : MonoBehaviour {
             p.dead = true;
             StopAllCoroutines();
             Controller.Instance.clearScreen = true;
+        }
+        if (Controller.Instance.bossDead)
+        {
+            if (tilNextStg > 120)
+            {
+                SceneManager.LoadScene("Stage2");
+            }
+            tilNextStg++;
         }
 	}
 

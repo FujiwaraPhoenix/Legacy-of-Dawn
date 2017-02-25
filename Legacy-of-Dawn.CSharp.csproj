@@ -76,16 +76,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Boss1.cs" />
+    <Compile Include="Assets\Boss2.cs" />
     <Compile Include="Assets\Bullet.cs" />
     <Compile Include="Assets\Controller.cs" />
     <Compile Include="Assets\Enemy.cs" />
     <Compile Include="Assets\EnemyShot.cs" />
     <Compile Include="Assets\GlobalFxns.cs" />
     <Compile Include="Assets\Item.cs" />
+    <Compile Include="Assets\ItemUI.cs" />
     <Compile Include="Assets\LaserShot.cs" />
+    <Compile Include="Assets\NumericalMenuUI.cs" />
     <Compile Include="Assets\Orbiter.cs" />
+    <Compile Include="Assets\PauseMenu.cs" />
     <Compile Include="Assets\Player.cs" />
     <Compile Include="Assets\Stage1.cs" />
+    <Compile Include="Assets\Stage2.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

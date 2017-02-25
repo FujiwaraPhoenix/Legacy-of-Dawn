@@ -10,6 +10,7 @@ public class Stage2 : MonoBehaviour {
     void Start()
     {
         Controller.Instance.bossDead = false;
+        Controller.Instance.clearScreen = false;
         StartCoroutine(stage2());
     }
 
@@ -27,84 +28,94 @@ public class Stage2 : MonoBehaviour {
     IEnumerator stage2()
     {
         yield return new WaitForSeconds(3);
-        //Wave 1: Suicide ghosts. 10 from each side of the screen, sine mvt.
+        //Wave 1: Suicide ghosts. 5 from each side of the screen, sine mvt.
         Enemy ghost1 = Instantiate(a1, new Vector3(-12, 18, 0), Quaternion.identity);
-        ghost1.setParameters(3, .25f, 0, .25f, .25f, 5, false, 10);
+        ghost1.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
         ghost1.shotType = 6;
         ghost1.itemDrop = 1;
         ghost1.amplitude = .25f;
         ghost1.lr = false;
+        ghost1.mvtScale = .2f;
 
         Enemy ghost2 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
-        ghost2.setParameters(3, .25f, 0, .25f, .25f, 5, false, 10);
+        ghost2.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
         ghost2.shotType = 6;
         ghost2.itemDrop = 1;
         ghost2.amplitude = .25f;
         ghost2.lr = true;
+        ghost2.mvtScale = .2f;
 
         yield return new WaitForSeconds(.5f);
 
         Enemy ghost3 = Instantiate(a1, new Vector3(-12, 18, 0), Quaternion.identity);
-        ghost3.setParameters(3, .25f, 0, .25f, .25f, 5, false, 10);
+        ghost3.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
         ghost3.shotType = 6;
         ghost3.itemDrop = 2;
         ghost3.amplitude = .25f;
         ghost3.lr = false;
+        ghost3.mvtScale = .2f;
 
         Enemy ghost4 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
-        ghost4.setParameters(3, .25f, 0, .25f, .25f, 5, false, 10);
+        ghost4.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
         ghost4.shotType = 6;
         ghost4.itemDrop = 2;
         ghost4.amplitude = .25f;
         ghost4.lr = true;
+        ghost4.mvtScale = .2f;
 
         yield return new WaitForSeconds(.5f);
 
         Enemy ghost5 = Instantiate(a1, new Vector3(-12, 18, 0), Quaternion.identity);
-        ghost5.setParameters(3, .25f, 0, .25f, .25f, 5, false, 10);
+        ghost5.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
         ghost5.shotType = 6;
         ghost5.itemDrop = 1;
         ghost5.amplitude = .25f;
         ghost5.lr = false;
+        ghost5.mvtScale = .2f;
 
         Enemy ghost6 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
-        ghost6.setParameters(3, .25f, 0, .25f, .25f, 5, false, 10);
+        ghost6.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
         ghost6.shotType = 6;
         ghost6.itemDrop = 1;
         ghost6.amplitude = .25f;
         ghost6.lr = true;
+        ghost6.mvtScale = .2f;
 
         yield return new WaitForSeconds(.5f);
 
         Enemy ghost7 = Instantiate(a1, new Vector3(-12, 18, 0), Quaternion.identity);
-        ghost7.setParameters(3, .25f, 0, .25f, .25f, 5, false, 10);
+        ghost7.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
         ghost7.shotType = 6;
         ghost7.itemDrop = 2;
         ghost7.amplitude = .25f;
         ghost7.lr = false;
+        ghost7.mvtScale = .2f;
 
         Enemy ghost8 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
-        ghost8.setParameters(3, .25f, 0, .25f, .25f, 5, false, 10);
+        ghost8.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
         ghost8.shotType = 6;
         ghost8.itemDrop = 2;
         ghost8.amplitude = .25f;
         ghost8.lr = true;
+        ghost8.mvtScale = .2f;
 
         yield return new WaitForSeconds(.5f);
 
         Enemy ghost9 = Instantiate(a1, new Vector3(-12, 18, 0), Quaternion.identity);
-        ghost9.setParameters(3, .25f, 0, .25f, .25f, 5, false, 10);
+        ghost9.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
         ghost9.shotType = 6;
         ghost9.itemDrop = 1;
         ghost9.amplitude = .25f;
         ghost9.lr = false;
+        ghost9.mvtScale = .2f;
 
         Enemy ghost10 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
-        ghost10.setParameters(3, .25f, 0, .25f, .25f, 5, false, 10);
+        ghost10.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
         ghost10.shotType = 6;
         ghost10.itemDrop = 1;
         ghost10.amplitude = .25f;
         ghost10.lr = true;
+        ghost10.mvtScale = .2f;
 
         yield return new WaitForSeconds(8);
 
@@ -279,15 +290,187 @@ public class Stage2 : MonoBehaviour {
         fairy14.deltaAngle = 3;
         fairy14.moveTimer = 60;
 
+        yield return new WaitForSeconds(3);
         //Wave 4: Big fairy pops in from top left to center, create rotating circle pattern as it curves out at 120 degrees. Same from opposite direction.
+        Enemy fairy15 = Instantiate(a, new Vector3(-12, 17, 0), Quaternion.identity);
+        fairy15.transform.localScale *= 1.5f;
+        fairy15.direction = GlobalFxns.ToVect(-45);
+        fairy15.setParameters(1, .05f, 0, .05f, .05f, 1, false, 75);
+        fairy15.setShotParameters(7, .1f, 0, .1f, .1f, 1, false);
+        fairy15.offsetInc = 15;
+        fairy15.noForCirc = 6;
+        fairy15.shotDelay = 30;
+        fairy15.shotTimer = -15;
+        fairy15.itemDrop = 2;
+
+        Enemy fairy16 = Instantiate(a, new Vector3(4, 17, 0), Quaternion.identity);
+        fairy16.transform.localScale *= 1.5f;
+        fairy16.direction = GlobalFxns.ToVect(225);
+        fairy16.setParameters(1, .05f, 0, .05f, .05f, 1, false, 75);
+        fairy16.setShotParameters(7, .1f, 0, .1f, .1f, 1, false);
+        fairy16.offsetInc = -15;
+        fairy16.noForCirc = 6;
+        fairy16.shotDelay = 30;
+        fairy16.shotTimer = -15;
+        fairy16.itemDrop = 2;
+
+        yield return new WaitForSeconds(2);
+        fairy15.mvtFxn = 2;
+        fairy15.deltaAngle = 1;
+        fairy15.moveTimer = 45;
+        fairy16.mvtFxn = 2;
+        fairy16.deltaAngle = -1;
+        fairy16.moveTimer = 45;
+
+        yield return new WaitForSeconds(8);
+
+        Controller.Instance.clearScreen = true;
+
+        yield return new WaitForSeconds(1);
+
+        Controller.Instance.clearScreen = false;
+
+        yield return new WaitForSeconds(1);
 
         //Midboss: Mimic MoF stage 2 big fairy. Add homing burst shots.
+        Enemy midboss2 = Instantiate(a, new Vector3(-4, 21, 0), Quaternion.identity);
+        midboss2.setParameters(1, .05f, 0, .05f, .05f, 1, false, 1500);
+        midboss2.setShotParameters(8, .05f, 0, .05f, .05f, 1, false);
+        midboss2.offsetInc = 15;
+        midboss2.transform.localScale *= 1.5f;
+        midboss2.shotTimer = -150;
+        midboss2.shotDelay = 30;
+        midboss2.itemDrop = 4;
+        midboss2.direction = new Vector3(0, -1, 0);
+        yield return new WaitForSeconds(2);
+        midboss2.velocity = 0;
+
+        yield return new WaitForSeconds(25);
+
+        Controller.Instance.clearScreen = true;
+
+        yield return new WaitForSeconds(2);
+
+        Controller.Instance.clearScreen = false;
+
+        yield return new WaitForSeconds(3);
 
         //Wave 5: Row of 10 moves in, loops in a big circle while shooting at center before leaving. Same from opp direction.
 
         //Final wave: Repeat of suicide ghosts, but this time with 2 fairies that shoot in circles moving clockwise/counterclockwise.
 
-        yield return new WaitForSeconds(10);
+        Enemy ghost11 = Instantiate(a1, new Vector3(-12, 18, 0), Quaternion.identity);
+        ghost11.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
+        ghost11.shotType = 6;
+        ghost11.itemDrop = 1;
+        ghost11.amplitude = .25f;
+        ghost11.lr = false;
+        ghost11.mvtScale = .2f;
+
+        Enemy ghost12 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
+        ghost12.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
+        ghost12.shotType = 6;
+        ghost12.itemDrop = 1;
+        ghost12.amplitude = .25f;
+        ghost12.lr = true;
+        ghost12.mvtScale = .2f;
+
+        yield return new WaitForSeconds(.5f);
+
+        Enemy ghost13 = Instantiate(a1, new Vector3(-12, 18, 0), Quaternion.identity);
+        ghost13.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
+        ghost13.shotType = 6;
+        ghost13.itemDrop = 2;
+        ghost13.amplitude = .25f;
+        ghost13.lr = false;
+        ghost13.mvtScale = .2f;
+
+        Enemy ghost14 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
+        ghost14.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
+        ghost14.shotType = 6;
+        ghost14.itemDrop = 2;
+        ghost14.amplitude = .25f;
+        ghost14.lr = true;
+        ghost14.mvtScale = .2f;
+
+        yield return new WaitForSeconds(.5f);
+
+        Enemy ghost15 = Instantiate(a1, new Vector3(-12, 18, 0), Quaternion.identity);
+        ghost15.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
+        ghost15.shotType = 6;
+        ghost15.itemDrop = 1;
+        ghost15.amplitude = .25f;
+        ghost15.lr = false;
+        ghost15.mvtScale = .2f;
+
+        Enemy ghost16 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
+        ghost16.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
+        ghost16.shotType = 6;
+        ghost16.itemDrop = 1;
+        ghost16.amplitude = .25f;
+        ghost16.lr = true;
+        ghost16.mvtScale = .2f;
+
+        Enemy altFairy1 = Instantiate(a, new Vector3(-1, 22, 0), Quaternion.identity);
+        altFairy1.direction = new Vector3(0, -1, 0);
+        altFairy1.setParameters(1, .05f, 0, .05f, .05f, 1, false, 200);
+        altFairy1.setShotParameters(3, .025f, 0, .025f, .025f, 1, false);
+        altFairy1.offsetInc = 15;
+        altFairy1.noForCirc = 8;
+        altFairy1.shotTimer = -180;
+        altFairy1.shotDelay = 45;
+        altFairy1.itemDrop = 3;
+        Enemy altFairy2 = Instantiate(a, new Vector3(-7, 22, 0), Quaternion.identity);
+        altFairy2.direction = new Vector3(0, -1, 0);
+        altFairy2.setParameters(1, .05f, 0, .05f, .05f, 1, false, 200);
+        altFairy2.setShotParameters(3, .025f, 0, .025f, .025f, 1, false);
+        altFairy2.offsetInc = -15;
+        altFairy2.noForCirc = 8;
+        altFairy2.shotTimer = -180;
+        altFairy2.shotDelay = 45;
+        altFairy2.itemDrop = 3;
+
+        yield return new WaitForSeconds(.5f);
+
+        Enemy ghost17 = Instantiate(a1, new Vector3(-12, 18, 0), Quaternion.identity);
+        ghost17.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
+        ghost17.shotType = 6;
+        ghost17.itemDrop = 2;
+        ghost17.amplitude = .25f;
+        ghost17.lr = false;
+        ghost17.mvtScale = .2f;
+
+        Enemy ghost18 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
+        ghost18.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
+        ghost18.shotType = 6;
+        ghost18.itemDrop = 2;
+        ghost18.amplitude = .25f;
+        ghost18.lr = true;
+        ghost18.mvtScale = .2f;
+
+        yield return new WaitForSeconds(.5f);
+
+        Enemy ghost19 = Instantiate(a1, new Vector3(-12, 18, 0), Quaternion.identity);
+        ghost19.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
+        ghost19.shotType = 6;
+        ghost19.itemDrop = 1;
+        ghost19.amplitude = .25f;
+        ghost19.lr = false;
+        ghost19.mvtScale = .2f;
+
+        Enemy ghost20 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
+        ghost20.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
+        ghost20.shotType = 6;
+        ghost20.itemDrop = 1;
+        ghost20.amplitude = .25f;
+        ghost20.lr = true;
+        ghost20.mvtScale = .2f;
+
+        yield return new WaitForSeconds(1);
+        altFairy1.velocity = 0;
+        altFairy2.velocity = 0;
+
+        yield return new WaitForSeconds(15);
 
         Controller.Instance.clearScreen = true;
 

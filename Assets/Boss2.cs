@@ -255,11 +255,11 @@ public class Boss2 : Enemy {
             Vector3 rtSpawn2 = new Vector3(-12, .25f, 0);
             Vector3 lfSpawn2 = new Vector3(3.5f, -.25f, 0);
             EnemyShot river = Instantiate(water, rtSpawn1, Quaternion.identity);
-            river.setParameters(3, .5f, 0, .25f, .25f, 2, false);
+            river.setParameters(3, .4f, 0, .25f, .25f, 2, false);
             river.amplitude = .5f;
             river.lr = false;
             EnemyShot river2 = Instantiate(water, lfSpawn1, Quaternion.identity);
-            river2.setParameters(3, .5f, 0, .25f, .25f, 2, false);
+            river2.setParameters(3, .4f, 0, .25f, .25f, 2, false);
             river2.amplitude = .5f;
             river2.lr = true;
             EnemyShot river3 = Instantiate(water, rtSpawn2, Quaternion.identity);

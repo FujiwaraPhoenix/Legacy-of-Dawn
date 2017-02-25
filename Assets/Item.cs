@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item : MonoBehaviour {
     public float gravity, velocityX, velocityY, maxdecel, PoCGrav;
     public int itemType;
+    public bool PoCProc;
     public Controller cont;
 
 	// Use this for initialization
@@ -20,6 +21,10 @@ public class Item : MonoBehaviour {
         if (!Controller.Instance.paused)
         {
             if (Controller.Instance.player.transform.position.y >= 15f)
+            {
+                PoCProc = true;
+            }
+            if (PoCProc)
             {
                 PoC();
             }
@@ -82,6 +87,10 @@ public class Item : MonoBehaviour {
                 if (Controller.Instance.power < 4.0f)
                 {
                     Controller.Instance.power += 1;
+                    if (Controller.Instance.power > 4.0f)
+                    {
+                        Controller.Instance.power = 4;
+                    }
                 }
                 else
                 {

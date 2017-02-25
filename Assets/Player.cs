@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-
+    public static Player p;
     public Bullet shot, shot2;
     public Controller cont;
     public Orbiter a, b;
@@ -20,8 +20,16 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+        if (p == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            p = this;
+        }
+        else if (p != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {

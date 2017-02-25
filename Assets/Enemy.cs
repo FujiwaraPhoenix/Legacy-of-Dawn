@@ -9,10 +9,10 @@ public class Enemy : MonoBehaviour
     public bool upY;
     public BoxCollider2D hitbox;
     public CircleCollider2D altHitbox;
-    public Item power, point, bigPower;
+    public Item power, point, bigPower, bomb, life;
     public Vector3 direction;
     public EnemyShot bullet, bulletGroupA;
-    public float velocity, acceleration, minvelocity, maxvelocity, playerX, playerY, deltaAngle, amplitude;
+    public float velocity, acceleration, minvelocity, maxvelocity, playerX, playerY, deltaAngle, amplitude, mvtScale;
     public float shotVel, shotAccel, shotMinV, shotMaxV;
     public int mvtFxn, shotTimer, ticks, itemDrop, moveTimer, shotType, shotDelay, noForCirc, offsetVal, shotTicks, offsetInc, ptInRotation;
     public bool decelerating, shotDecel, lr;
@@ -62,6 +62,32 @@ public class Enemy : MonoBehaviour
             if (shotType == 5)
             {
                 shootDown();
+            }
+            if (shotType == 7)
+            {
+                if (shotTimer > shotDelay)
+                {
+                    if (timerA < 3)
+                    {
+                        makeCircle(noForCirc, offsetVal, shotVel, shotAccel, shotMinV, shotMaxV, shotTicks, shotDecel);
+                        offsetVal += offsetInc;
+                        timerA++;
+                    }
+                    else
+                    {
+                        velocity -= .2f;
+                        makeCircle(noForCirc, offsetVal, shotVel, shotAccel, shotMinV, shotMaxV, shotTicks, shotDecel);
+                        offsetVal += offsetInc;
+                        shotTimer = shotDelay + 1;
+                        velocity += .2f;
+                        AimShotgun();
+                        timerA = 0;
+                    }
+                }
+            }
+            if (shotType == 8)
+            {
+                midboss2();
             }
             if (hp < 1)
             {
@@ -237,6 +263,14 @@ public class Enemy : MonoBehaviour
         if (itemDrop == 3)
         {
             Instantiate(bigPower, transform.position, Quaternion.identity);
+        }
+        if (itemDrop == 4)
+        {
+            Instantiate(life, transform.position, Quaternion.identity);
+        }
+        if (itemDrop == 5)
+        {
+            Instantiate(bomb, transform.position, Quaternion.identity);
         }
     }
 
@@ -426,12 +460,12 @@ public class Enemy : MonoBehaviour
         {
             if (left)
             {
-                transform.position += new Vector3(-1 * vel, Mathf.Sin(timerB) * amp);
+                transform.position += new Vector3(-1 * vel, Mathf.Sin(timerB * mvtScale) * amp);
                 timerB++;
             }
             else
             {
-                transform.position += new Vector3(vel, Mathf.Sin(timerB) * amp);
+                transform.position += new Vector3(vel, Mathf.Sin(timerB * mvtScale) * amp);
                 timerB++;
             }
             timerC = 0;
@@ -453,6 +487,47 @@ public class Enemy : MonoBehaviour
             makeCircle(5, angle, spdUp, 0, spdUp, spdUp, 1, false);
             spdUp += .03f;
             shotTimer++;
+        }
+    }
+
+    void midboss2()
+    {
+        float tempVel = velocity;
+        if (shotTimer > 30)
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                EnemyShot thing = Instantiate (bullet, transform.position,Quaternion.identity);
+                thing.setParameters(1, tempVel, 0, tempVel, tempVel, 1, false);
+                EnemyShot thing2 = Instantiate(bullet, transform.position, Quaternion.identity);
+                thing2.setParameters(1, tempVel, 0, tempVel, tempVel, 1, false);
+                thing.direction = GlobalFxns.ToVect(-90 + offsetVal);
+                thing2.direction = GlobalFxns.ToVect(-90 + -offsetVal);
+                tempVel += .025f;
+                
+            }
+            offsetVal += offsetInc;
+            shotTimer = 0;
+            timerA++;
+        }
+        if (timerA > 2)
+        {
+            float tempX = Controller.Instance.player.transform.position.x;
+            float tempY = Controller.Instance.player.transform.position.y;
+            Vector3 rota = (new Vector3(tempX - this.transform.position.x, tempY - this.transform.position.y, 0));
+            float angle = GlobalFxns.ToAng(rota);
+            float tempVel2 = .05f;
+            for (int i = 0; i < 3; i++)
+            {
+                EnemyShot aimed = Instantiate(bullet, transform.position, Quaternion.identity);
+                aimed.playerX = tempX;
+                aimed.playerY = tempY;
+                Vector3 dir = rota;
+                aimed.direction = dir.normalized;
+                aimed.setParameters(2, tempVel2, 0, tempVel2, tempVel2, 1, false);
+                tempVel2 += .025f;
+            }
+            timerA = 0;
         }
     }
 }
