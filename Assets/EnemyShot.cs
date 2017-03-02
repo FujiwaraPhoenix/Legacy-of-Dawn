@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyShot : MonoBehaviour {
     public Vector3 direction;
-    public float velocity, acceleration, minvelocity, maxvelocity, playerX, playerY, amplitude;
+    public float velocity, acceleration, minvelocity, maxvelocity, playerX, playerY, amplitude, dirAsFloat, increment;
     public int mvtFxn, timer, timer2, timer3, ticks;
     public bool decelerating, lr;
 
@@ -31,6 +31,10 @@ public class EnemyShot : MonoBehaviour {
             {
                 sinMove(lr, velocity, acceleration, minvelocity, maxvelocity, ticks, amplitude);
                 timer3++;
+            }
+            if (mvtFxn == 4)
+            {
+                curveMove(increment);
             }
             timer++;
             SD();
@@ -186,5 +190,12 @@ public class EnemyShot : MonoBehaviour {
         {
             Object.Destroy(this.gameObject);
         }
+    }
+
+    void curveMove(float inc)
+    {
+        dirAsFloat = GlobalFxns.ToAng(direction);
+        linearMove(direction, velocity, acceleration, minvelocity,maxvelocity,ticks);
+        direction = GlobalFxns.ToVect(dirAsFloat + inc);
     }
 }
