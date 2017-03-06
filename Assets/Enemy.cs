@@ -6,14 +6,14 @@ public class Enemy : MonoBehaviour
 {
 
     public int hp, timer, timerA, timerB, timerC;
-    public bool upY;
+    public bool upY, indirect;
     public BoxCollider2D hitbox;
     public CircleCollider2D altHitbox;
     public Item power, point, bigPower, bomb, life;
     public Vector3 direction;
-    public EnemyShot bullet, bulletGroupA;
+    public EnemyShot bullet, bullet2, bulletGroupA;
     public float velocity, acceleration, minvelocity, maxvelocity, playerX, playerY, deltaAngle, amplitude, mvtScale;
-    public float shotVel, shotAccel, shotMinV, shotMaxV;
+    public float shotVel, shotAccel, shotMinV, shotMaxV, variance;
     public int mvtFxn, shotTimer, ticks, itemDrop, moveTimer, shotType, shotDelay, noForCirc, offsetVal, shotTicks, offsetInc, ptInRotation;
     public bool decelerating, shotDecel, lr;
 
@@ -88,6 +88,15 @@ public class Enemy : MonoBehaviour
             if (shotType == 8)
             {
                 midboss2();
+            }
+            if (shotType == 9)
+            {
+                somethingVariance();
+            }
+            if (shotType == 10)
+            {
+                specialCirc();
+                offsetVal += offsetInc;
             }
             if (hp < 1)
             {
@@ -292,6 +301,7 @@ public class Enemy : MonoBehaviour
     {
         if (shotTimer > shotDelay)
         {
+            float deviation = Random.Range(-variance, variance);
             float tempX = Controller.Instance.player.transform.position.x;
             float tempY = Controller.Instance.player.transform.position.y;
             Vector3 rota = (new Vector3(tempX - this.transform.position.x, tempY - this.transform.position.y, 0));
@@ -301,7 +311,15 @@ public class Enemy : MonoBehaviour
             aimed.playerX = tempX;
             aimed.playerY = tempY;
             Vector3 dir = rota;
-            aimed.direction = dir.normalized;
+            if (indirect)
+            {
+                float ang = GlobalFxns.ToAng(dir.normalized);
+                aimed.direction = GlobalFxns.ToVect(ang + deviation);
+            }
+            else
+            {
+                aimed.direction = dir.normalized;
+            }
         }
     }
 
@@ -348,6 +366,7 @@ public class Enemy : MonoBehaviour
                 {
                     circBullet.decelerating = false;
                 }
+                circBullet.transform.eulerAngles = new Vector3(0, 0, betAng * i + offset + 90);
             }
             shotTimer = 0;
         }
@@ -528,6 +547,49 @@ public class Enemy : MonoBehaviour
                 tempVel2 += .025f;
             }
             timerA = 0;
+        }
+    }
+
+    void somethingVariance()
+    {
+        makeCircle(5, deltaAngle, .05f, 0, .05f, .05f, 1, false);
+        deltaAngle += Mathf.Sin(timerA) * 6 + 10;
+        timerA++;
+    }
+
+    void specialCirc()
+    {
+        if (shotTimer > shotDelay)
+        {
+            if (timerA < (180 / offsetInc))
+            {
+                EnemyShot circBullet1 = Instantiate(bullet2, transform.position, Quaternion.identity) as EnemyShot;
+                circBullet1.mvtFxn = 6;
+                circBullet1.velocity = shotVel;
+                circBullet1.acceleration = shotAccel;
+                circBullet1.minvelocity = shotMinV;
+                circBullet1.maxvelocity = shotMaxV;
+                circBullet1.ticks = shotTicks;
+                circBullet1.direction = GlobalFxns.ToVect(0 + offsetVal);
+                circBullet1.transform.eulerAngles = new Vector3(0, 0, offsetVal - 90);
+                circBullet1.transform.localScale += new Vector3(0, 20, 0);
+                circBullet1.delay = 60;
+
+                EnemyShot circBullet2 = Instantiate(bullet2, transform.position, Quaternion.identity) as EnemyShot;
+                circBullet2.mvtFxn = 6;
+                circBullet2.velocity = shotVel;
+                circBullet2.acceleration = shotAccel;
+                circBullet2.minvelocity = shotMinV;
+                circBullet2.maxvelocity = shotMaxV;
+                circBullet2.ticks = shotTicks;
+                circBullet2.direction = GlobalFxns.ToVect(180 + offsetVal);
+                circBullet2.transform.eulerAngles = new Vector3(0, 0, offsetVal + 90);
+                circBullet2.transform.localScale += new Vector3(0, 20, 0);
+                circBullet2.delay = 60;
+
+                shotTimer = 0;
+                timerA++;
+            }
         }
     }
 }

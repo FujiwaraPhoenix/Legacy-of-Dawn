@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyShot : MonoBehaviour {
     public Vector3 direction;
-    public float velocity, acceleration, minvelocity, maxvelocity, playerX, playerY, amplitude, dirAsFloat, increment;
-    public int mvtFxn, timer, timer2, timer3, ticks;
+    public float velocity, acceleration, minvelocity, maxvelocity, playerX, playerY, amplitude, dirAsFloat, increment, tempInc;
+    public int mvtFxn, timer, timer2, timer3, ticks, delay;
     public bool decelerating, lr;
 
     // Use this for initialization
@@ -35,6 +35,14 @@ public class EnemyShot : MonoBehaviour {
             if (mvtFxn == 4)
             {
                 curveMove(increment);
+            }
+            if (mvtFxn == 5)
+            {
+                unifiedMvt();
+            }
+            if (mvtFxn == 6)
+            {
+                delayMove();
             }
             timer++;
             SD();
@@ -197,5 +205,41 @@ public class EnemyShot : MonoBehaviour {
         dirAsFloat = GlobalFxns.ToAng(direction);
         linearMove(direction, velocity, acceleration, minvelocity,maxvelocity,ticks);
         direction = GlobalFxns.ToVect(dirAsFloat + inc);
+    }
+
+    void unifiedMvt()
+    {
+        dirAsFloat = GlobalFxns.ToAng(direction);
+        if (dirAsFloat > Controller.Instance.globalAng)
+        {
+            increment = tempInc;
+            direction = GlobalFxns.ToVect(dirAsFloat - increment);
+            linearMove(direction, velocity, acceleration, minvelocity, maxvelocity, ticks);
+            transform.eulerAngles += new Vector3(0, 0, increment);
+        }
+        else if (dirAsFloat < Controller.Instance.globalAng)
+        {
+            increment = tempInc;
+            direction = GlobalFxns.ToVect(dirAsFloat + increment);
+            linearMove(direction, velocity, acceleration, minvelocity, maxvelocity, ticks);
+            transform.eulerAngles += new Vector3(0, 0, -increment);
+        }
+        else
+        {
+            increment = 0;
+            linearMove(direction, velocity, acceleration, minvelocity, maxvelocity, ticks);
+        }
+    }
+
+    void delayMove()
+    {
+        if (timer2 > delay)
+        {
+            mvtFxn = 1;
+        }
+        else
+        {
+            timer2++;
+        }
     }
 }

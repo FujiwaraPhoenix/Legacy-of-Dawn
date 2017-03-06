@@ -164,7 +164,7 @@ public class Player : MonoBehaviour {
                     c.on = true;
                     if (Controller.Instance.laserProcTimer > 10)
                     {
-                        Controller.Instance.dmg2 = 2;
+                        Controller.Instance.dmg2 = 4;
                         Controller.Instance.laserProcTimer = 0;
                     }
                     else
@@ -181,7 +181,7 @@ public class Player : MonoBehaviour {
                     c.on = true;
                     if (Controller.Instance.laserProcTimer > 10)
                     {
-                        Controller.Instance.dmg2 = 4;
+                        Controller.Instance.dmg2 = 8;
                         Controller.Instance.laserProcTimer = 0;
                     }
                     else
@@ -199,7 +199,7 @@ public class Player : MonoBehaviour {
                     c.on = true;
                     if (Controller.Instance.laserProcTimer > 10)
                     {
-                        Controller.Instance.dmg2 = 6;
+                        Controller.Instance.dmg2 = 12;
                         Controller.Instance.laserProcTimer = 0;
                     }
                     else
@@ -217,7 +217,7 @@ public class Player : MonoBehaviour {
                     c.on = true;
                     if (Controller.Instance.laserProcTimer > 10)
                     {
-                        Controller.Instance.dmg2 = 8;
+                        Controller.Instance.dmg2 = 16;
                         Controller.Instance.laserProcTimer = 0;
                     }
                     else

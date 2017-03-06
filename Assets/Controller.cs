@@ -5,7 +5,7 @@ public class Controller : MonoBehaviour
 {
     public static Controller Instance;
     public int lives, bombs, points, stageNo, dmg, dmg2, laserProcTimer;
-    public float power;
+    public float power, globalAng;
     public bool pt1up1, pt1up2, pt1up3, stageClear, laserActive, invuln, clearScreen, bombing, paused, bossDead;
     public Player player;
 
