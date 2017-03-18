@@ -82,6 +82,7 @@
     <Compile Include="Assets\Controller.cs" />
     <Compile Include="Assets\Enemy.cs" />
     <Compile Include="Assets\EnemyShot.cs" />
+    <Compile Include="Assets\Familiar.cs" />
     <Compile Include="Assets\GlobalFxns.cs" />
     <Compile Include="Assets\Item.cs" />
     <Compile Include="Assets\ItemUI.cs" />
@@ -90,8 +91,10 @@
     <Compile Include="Assets\Orbiter.cs" />
     <Compile Include="Assets\PauseMenu.cs" />
     <Compile Include="Assets\Player.cs" />
+    <Compile Include="Assets\SelectorArrow.cs" />
     <Compile Include="Assets\Stage1.cs" />
     <Compile Include="Assets\Stage2.cs" />
+    <Compile Include="Assets\Stage3.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

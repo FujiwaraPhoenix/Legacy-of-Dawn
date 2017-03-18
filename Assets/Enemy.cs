@@ -253,7 +253,7 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-        transform.position += (dir * velocity);
+        transform.position += (dir * velocity * Time.deltaTime * 60);
         if (transform.position.y < -5f || transform.position.y > 22f || transform.position.x < -13 || transform.position.x > 5f)
         {
             Object.Destroy(this.gameObject);

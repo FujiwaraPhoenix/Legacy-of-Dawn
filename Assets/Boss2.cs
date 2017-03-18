@@ -84,6 +84,7 @@ public class Boss2 : Enemy {
             else
             {
                 StartCoroutine(screenWipe());
+                Controller.Instance.bossDead = true;
                 Destroy(this.gameObject);
             }
         }

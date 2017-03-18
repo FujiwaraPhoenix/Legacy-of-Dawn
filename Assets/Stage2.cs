@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Stage2 : MonoBehaviour {
     public Enemy a, a1;
     public Boss2 b;
     public Player p;
+    public int tilNextStg;
 
     void Start()
     {
@@ -22,6 +24,15 @@ public class Stage2 : MonoBehaviour {
             p.dead = true;
             StopAllCoroutines();
             Controller.Instance.clearScreen = true;
+        }
+
+        if (Controller.Instance.bossDead)
+        {
+            if (tilNextStg > 180)
+            {
+                SceneManager.LoadScene("Stage3");
+            }
+            tilNextStg++;
         }
     }
 
@@ -340,7 +351,7 @@ public class Stage2 : MonoBehaviour {
         midboss2.transform.localScale *= 1.5f;
         midboss2.shotTimer = -150;
         midboss2.shotDelay = 30;
-        midboss2.itemDrop = 4;
+        midboss2.itemDrop = 5;
         midboss2.direction = new Vector3(0, -1, 0);
         yield return new WaitForSeconds(2);
         midboss2.velocity = 0;
@@ -420,6 +431,7 @@ public class Stage2 : MonoBehaviour {
         altFairy1.shotTimer = -180;
         altFairy1.shotDelay = 45;
         altFairy1.itemDrop = 3;
+
         Enemy altFairy2 = Instantiate(a, new Vector3(-7, 22, 0), Quaternion.identity);
         altFairy2.direction = new Vector3(0, -1, 0);
         altFairy2.setParameters(1, .05f, 0, .05f, .05f, 1, false, 200);

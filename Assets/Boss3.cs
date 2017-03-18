@@ -325,12 +325,12 @@ public class Boss3 : Enemy {
         {
             Controller.Instance.globalAng = -90;
         }
-        if (timer > 30)
+        if (timer > 10)
         {
             for (int i = 0; i < 1; i++)
             {
                 float topSpawn = Random.Range(-12, 3.5f);
-                float randVel = Random.Range(.025f, .075f);
+                float randVel = Random.Range(.075f, .1f);
                 EnemyShot topShot = Instantiate(shotB, new Vector3(topSpawn, 20, 0), Quaternion.identity);
                 topShot.setParameters(5, randVel, 0, randVel, randVel, 1, false);
                 topShot.tempInc = 1;
@@ -340,7 +340,7 @@ public class Boss3 : Enemy {
             for (int i = 0; i < 1; i++)
             {
                 float sideSpawnA = Random.Range(10, 19.5f);
-                float randVel = Random.Range(.025f, .075f);
+                float randVel = Random.Range(.075f, .1f);
                 EnemyShot leftShot = Instantiate(shotB, new Vector3(-12, sideSpawnA, 0), Quaternion.identity);
                 leftShot.setParameters(5, randVel, 0, randVel, randVel, 1, false);
                 leftShot.tempInc = 1;
@@ -350,7 +350,7 @@ public class Boss3 : Enemy {
             for (int i = 0; i < 1; i++)
             {
                 float sideSpawnB = Random.Range(10, 19.5f);
-                float randVel = Random.Range(.025f, .075f);
+                float randVel = Random.Range(.075f, .1f);
                 EnemyShot rightShot = Instantiate(shotB, new Vector3(3.5f, sideSpawnB, 0), Quaternion.identity);
                 rightShot.setParameters(5, randVel, 0, randVel, randVel, 1, false);
                 rightShot.tempInc = 1;
@@ -386,7 +386,7 @@ public class Boss3 : Enemy {
         if (timer > 1)
         {
             float topSpawn = Random.Range(-12, 3.5f);
-            float randVel = Random.Range(.025f, .075f);
+            float randVel = Random.Range(.075f, .1f);
             float randDir = Random.Range(-115f, -65f);
             EnemyShot topShot = Instantiate(rain, new Vector3(topSpawn, 20, 0), Quaternion.identity);
             topShot.transform.localScale *= .75f;

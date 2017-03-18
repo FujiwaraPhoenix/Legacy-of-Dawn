@@ -7,12 +7,14 @@ public class Stage1 : MonoBehaviour {
     public Enemy a;
     public Boss1 b;
     public Player p;
+    public bool testing;
     public int tilNextStg;
 
 
     void Start()
     {
         StartCoroutine(stage1());
+        testing = true;
     }
 
     // Update is called once per frame
@@ -25,7 +27,7 @@ public class Stage1 : MonoBehaviour {
         }
         if (Controller.Instance.bossDead)
         {
-            if (tilNextStg > 120)
+            if (tilNextStg > 180)
             {
                 SceneManager.LoadScene("Stage2");
             }

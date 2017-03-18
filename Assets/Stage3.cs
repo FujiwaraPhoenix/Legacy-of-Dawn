@@ -78,8 +78,6 @@ public class Stage3 : MonoBehaviour
         fairy4.itemDrop = 2;
 
         yield return new WaitForSeconds(0.5f);
-        fairy1.velocity = 0;
-        fairy2.velocity = 0;
 
         Enemy fairy5 = Instantiate(a, new Vector3(-4, 22, 0), Quaternion.identity);
         fairy5.direction = new Vector3(0, -1, 0);
@@ -91,6 +89,10 @@ public class Stage3 : MonoBehaviour
         fairy5.shotDelay = 20;
         fairy5.shotTimer = -40;
         fairy5.itemDrop = 1;
+
+        yield return new WaitForSeconds(0.5f);
+        fairy1.velocity = 0;
+        fairy2.velocity = 0;
 
         yield return new WaitForSeconds(.75f);
         fairy5.velocity = 0;
@@ -160,8 +162,6 @@ public class Stage3 : MonoBehaviour
         fairy9.itemDrop = 2;
 
         yield return new WaitForSeconds(0.5f);
-        fairy6.velocity = 0;
-        fairy7.velocity = 0;
 
         Enemy fairy10 = Instantiate(a, new Vector3(-4, 22, 0), Quaternion.identity);
         fairy10.direction = new Vector3(0, -1, 0);
@@ -174,14 +174,16 @@ public class Stage3 : MonoBehaviour
         fairy10.shotTimer = -40;
         fairy10.itemDrop = 1;
 
-        yield return new WaitForSeconds(.75f);
-        fairy10.velocity = 0;
+        yield return new WaitForSeconds(0.5f);
+        fairy6.velocity = 0;
+        fairy7.velocity = 0;
 
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(1f);
         fairy8.velocity = 0;
         fairy9.velocity = 0;
+        fairy10.velocity = 0;
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.25f);
 
         Enemy fairy11 = Instantiate(a, new Vector3(-1, 22, 0), Quaternion.identity);
         fairy11.direction = new Vector3(0, -1, 0);
@@ -342,13 +344,11 @@ public class Stage3 : MonoBehaviour
         fairy22.shotTimer = -40;
         fairy22.itemDrop = 3;
 
-        yield return new WaitForSeconds(1);
-        fairy21.velocity = 0;
-        fairy22.velocity = 0;
-
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1.5f);
         fairy19.velocity = 0;
         fairy20.velocity = 0;
+        fairy21.velocity = 0;
+        fairy22.velocity = 0;
 
         yield return new WaitForSeconds(10);
 
@@ -371,6 +371,7 @@ public class Stage3 : MonoBehaviour
         wisp1.offsetInc = 15;
         wisp1.shotDelay = 10;
         wisp1.shotTimer = -110;
+        wisp1.itemDrop = 1;
 
         yield return new WaitForSeconds(.5f);
 
@@ -381,18 +382,19 @@ public class Stage3 : MonoBehaviour
         wisp2.offsetInc = 15;
         wisp2.shotDelay = 10;
         wisp2.shotTimer = -110;
+        wisp2.itemDrop = 1;
 
         yield return new WaitForSeconds(.5f);
 
-        Enemy wisp3 = Instantiate(a1, new Vector3(.5f, 22, 0), Quaternion.identity);
+        Enemy wisp3 = Instantiate(a1, new Vector3(-1.5f, 22, 0), Quaternion.identity);
         wisp3.setParameters(1, .05f, 0, .05f, .05f, 1, false, 100);
         wisp3.setShotParameters(10, .075f, 0, .075f, .075f, 1, false);
         wisp3.direction = new Vector3(0, -1, 0);
         wisp3.offsetInc = 15;
         wisp3.shotDelay = 10;
         wisp3.shotTimer = -110;
+        wisp3.itemDrop = 2;
 
-        wisp1.velocity = 0;
 
         yield return new WaitForSeconds(.5f);
 
@@ -403,6 +405,11 @@ public class Stage3 : MonoBehaviour
         wisp4.offsetInc = 15;
         wisp4.shotDelay = 10;
         wisp4.shotTimer = -110;
+        wisp4.itemDrop = 2;
+
+        wisp1.velocity = 0;
+
+        yield return new WaitForSeconds(.5f);
 
         wisp2.velocity = 0;
 
@@ -414,7 +421,7 @@ public class Stage3 : MonoBehaviour
 
         wisp4.velocity = 0;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3);
 
         wisp1.direction = GlobalFxns.ToVect(-60);
         wisp1.velocity = .025f;
@@ -442,8 +449,9 @@ public class Stage3 : MonoBehaviour
         deathFairy.setParameters(1, .05f, 0, .05f, .05f, 1, false, 1250);
         deathFairy.direction = new Vector3(0, -1, 0);
         deathFairy.bullet = deathFairy.bullet2;
+        deathFairy.transform.localScale *= 1.5f;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         deathFairy.velocity = 0;
         deathFairy.setShotParameters(9, .05f, 0, .05f, .05f, 1, false);
         deathFairy.shotDelay = 2;
