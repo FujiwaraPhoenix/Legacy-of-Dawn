@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Boss1 : Enemy {
     public int remainingLives, countdown, spellTimer, currentStg, rotation, timer2, timer3, offset;
-    public EnemyShot bulletA, phoenix;
+    public EnemyShot bulletA, phoenix, bulletB;
     public Rigidbody2D rb;
     public Vector3 movedirection;
     public bool moving, justSpawned;
@@ -80,6 +80,9 @@ public class Boss1 : Enemy {
                 a.direction = (GlobalFxns.ToVect(0 + rotation));
                 b.direction = (GlobalFxns.ToVect(120 + rotation));
                 c.direction = (GlobalFxns.ToVect(240 + rotation));
+                a.transform.eulerAngles = new Vector3(0, 0, GlobalFxns.ToAng(a.direction) + 90);
+                b.transform.eulerAngles = new Vector3(0, 0, GlobalFxns.ToAng(b.direction) + 90);
+                c.transform.eulerAngles = new Vector3(0, 0, GlobalFxns.ToAng(c.direction) + 90);
                 a.setParameters(1, .05f, 0, .05f, .05f, 1, false);
                 b.setParameters(1, .05f, 0, .05f, .05f, 1, false);
                 c.setParameters(1, .05f, 0, .05f, .05f, 1, false);
@@ -186,6 +189,7 @@ public class Boss1 : Enemy {
             circBullet.maxvelocity = maxv;
             circBullet.ticks = tickrate;
             circBullet.direction = GlobalFxns.ToVect(betAng * i + offset);
+            circBullet.transform.eulerAngles = new Vector3(0, 0, betAng * i + offset + 90);
             if (decelYN)
             {
                 circBullet.decelerating = true;
@@ -263,7 +267,7 @@ public class Boss1 : Enemy {
         {
             float random = Random.Range(-11f, 3f);
             Vector3 startLoc = new Vector3 (random, 19, 0);
-            EnemyShot rain = Instantiate(bulletA, startLoc, Quaternion.identity);
+            EnemyShot rain = Instantiate(bulletB, startLoc, Quaternion.identity);
             rain.setParameters(1, .2f, -.0001f, .01f, 0, 1, false);
             rain.direction = new Vector3(0, -.1f, 0);
             timer2 = 0;

@@ -54,5 +54,6 @@ public class Orbiter : Bullet {
     {
         Vector3 radius = new Vector3(0, 0, 1);
         transform.RotateAround(player.transform.position, radius, 360 * Time.deltaTime);
+        transform.eulerAngles = new Vector3(0, 0, 0);
     }
 }

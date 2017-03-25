@@ -21,4 +21,11 @@ public class Controller : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void Update()
+    {
+        Instance.power = Instance.power * 20;
+        Instance.power = Mathf.Round(Instance.power);
+        Instance.power = Instance.power / 20;
+    }
 }

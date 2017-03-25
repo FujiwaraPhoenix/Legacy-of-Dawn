@@ -62,11 +62,13 @@ public class PauseMenu : MonoBehaviour {
             Controller.Instance.power = 1;
             Controller.Instance.paused = false;
             Controller.Instance.beginning = true;
+            Time.timeScale = 1;
             SceneManager.LoadScene("Stage1");
         }
         else
         {
             Controller.Instance.paused = false;
+            Time.timeScale = 1;
             s.enabled = false;
         }
     }

@@ -39,6 +39,7 @@ public class Player : MonoBehaviour {
             Fire();
             iFrame();
             counter++;
+            Debug.Log(Time.timeScale);
             if (!dead)
             {
                 BombActive();

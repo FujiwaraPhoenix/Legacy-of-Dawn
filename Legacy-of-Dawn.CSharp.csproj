@@ -84,6 +84,7 @@
     <Compile Include="Assets\EnemyShot.cs" />
     <Compile Include="Assets\Familiar.cs" />
     <Compile Include="Assets\GlobalFxns.cs" />
+    <Compile Include="Assets\Hitbox.cs" />
     <Compile Include="Assets\Item.cs" />
     <Compile Include="Assets\ItemUI.cs" />
     <Compile Include="Assets\LaserShot.cs" />
