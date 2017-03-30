@@ -8,10 +8,12 @@ public class Boss1 : Enemy {
     public Rigidbody2D rb;
     public Vector3 movedirection;
     public bool moving, justSpawned;
+    public Animator anim;
 
 	// Use this for initialization
 	void Start () {
         justSpawned = true;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -152,6 +154,10 @@ public class Boss1 : Enemy {
 
     void Spell1()
     {
+        if (timer == 110)
+        {
+            anim.Play("Mokou");
+        }
         if (timer > 120)
         {
             float tempX = Controller.Instance.player.transform.position.x;
@@ -235,6 +241,10 @@ public class Boss1 : Enemy {
 
     void Spell2()
     {
+        if (timer == 110)
+        {
+            anim.Play("Mokou");
+        }
         if (timer > 120)
         {
             for (int i = 0; i < 5 + 1; i++)
