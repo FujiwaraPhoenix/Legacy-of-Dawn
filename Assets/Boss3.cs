@@ -171,6 +171,7 @@ public class Boss3 : Enemy {
                     lol.setParameters(4, shotVel, 0, shotVel, shotVel, 1, false);
                     rotation += 10;
                 }
+                playSnd(1);
             }
             if (timer == 25)
             {
@@ -189,6 +190,7 @@ public class Boss3 : Enemy {
                     lolk.setParameters(4, shotVel, 0, shotVel, shotVel, 1, false);
                     rotationA += 10;
                 }
+                playSnd(1);
             }
             if (timer == 30)
             {
@@ -207,6 +209,7 @@ public class Boss3 : Enemy {
                     lolok.setParameters(4, shotVel, 0, shotVel, shotVel, 1, false);
                     rotationB += 10;
                 }
+                playSnd(1);
 
             }
             if (timer == 35)
@@ -226,6 +229,7 @@ public class Boss3 : Enemy {
                     lolok.setParameters(4, shotVel, 0, shotVel, shotVel, 1, false);
                     rotationC += 10;
                 }
+                playSnd(1);
             }
 
             if (timer == 40)
@@ -245,6 +249,7 @@ public class Boss3 : Enemy {
                     lolok.setParameters(4, shotVel, 0, shotVel, shotVel, 1, false);
                     rotationD += 10;
                 }
+                playSnd(1);
                 pauseBeforeNext = true;
             }
         }
@@ -279,6 +284,7 @@ public class Boss3 : Enemy {
             offset += 22;
             offset2 -= 7;
             timer = 0;
+            playSnd(3);
         }
     }
 
@@ -300,6 +306,7 @@ public class Boss3 : Enemy {
                     timer = 0;
                     timer3 = 0;
                 }
+                playSnd(1);
 
                 timer3++;
             }
@@ -357,6 +364,7 @@ public class Boss3 : Enemy {
                 rightShot.direction = GlobalFxns.ToVect(Controller.Instance.globalAng);
                 rightShot.dirAsFloat = Controller.Instance.globalAng;
             }
+            playSnd(4);
             timer2++;
             timer = 0;
         }
@@ -399,8 +407,9 @@ public class Boss3 : Enemy {
         if (timer2 < 0)
         {
             //lr true: move left. Else, right.
-            if (lr) {
-                Familiar umbrella = Instantiate(fam, new Vector3(5.75f,10.5f, 0), Quaternion.identity);
+            if (lr)
+            {
+                Familiar umbrella = Instantiate(fam, new Vector3(5.75f, 10.5f, 0), Quaternion.identity);
                 umbrella.leftright = false;
             }
             else
@@ -410,6 +419,36 @@ public class Boss3 : Enemy {
             }
             lr = !lr;
             timer2 = 60;
+        }
+        if (timer3 > 20)
+        {
+            playSnd(4);
+            timer3 = 0;
+        }
+        timer3++;
+    }
+
+    void playSnd(int type)
+    {
+        if (type == 1)
+        {
+            Sound.me.PlaySound(pewpew, 2, 0, 20);
+        }
+        else if (type == 2)
+        {
+            Sound.me.PlaySound(kirakira, 2, 20, 25);
+        }
+        else if (type == 3)
+        {
+            Sound.me.PlaySound(pewpew, .05f, 0, 25);
+        }
+        else if (type == 4)
+        {
+            Sound.me.PlaySound(kirakira, .2f, 0, 25);
+        }
+        else
+        {
+            Sound.me.PlaySound(hit, .05f, 25, 34);
         }
     }
 }

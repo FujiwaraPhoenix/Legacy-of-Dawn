@@ -131,6 +131,7 @@ public class Boss2 : Enemy {
                 }
                 rotation = 0;
                 timer2 = 1;
+                playSnd(1);
             }
             else if (timer2 == 1)
             {
@@ -145,6 +146,7 @@ public class Boss2 : Enemy {
                 }
                 rotation = 0;
                 timer2 = 0;
+                playSnd(1);
             }
         }
         if (timer > 90)
@@ -200,6 +202,7 @@ public class Boss2 : Enemy {
                 timer2 = 0;
                 timer3++;
             }
+            playSnd(1);
         }
         if (timer > 90)
         {
@@ -231,6 +234,7 @@ public class Boss2 : Enemy {
             offset2 -= 12;
             timer = 0;
             timer2++;
+            playSnd(1);
         }
         if (timer2 == 2)
         {
@@ -282,12 +286,14 @@ public class Boss2 : Enemy {
             ghostie.direction = new Vector3(0, 1, 0);
             ghostie.transform.eulerAngles = new Vector3(0, 0, 180);
             timer2 = 0;
+            playSnd(2);
         }
         if (timer3 > 30)
         {
             makeCircle(5, coinB, offset, .05f, 0, .05f, .05f, 1, false);
             offset += 5;
             timer3 = 0;
+            playSnd(1);
         }
     }
 
@@ -313,6 +319,22 @@ public class Boss2 : Enemy {
             {
                 circBullet.decelerating = false;
             }
+        }
+    }
+
+    void playSnd(int type)
+    {
+        if (type == 1)
+        {
+            Sound.me.PlaySound(pewpew, 2, 0, 20);
+        }
+        else if (type == 2)
+        {
+            Sound.me.PlaySound(kirakira, 2, 20, 25);
+        }
+        else
+        {
+            Sound.me.PlaySound(hit, .05f, 25, 34);
         }
     }
 }

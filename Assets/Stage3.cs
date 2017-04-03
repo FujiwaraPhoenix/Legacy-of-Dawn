@@ -21,7 +21,7 @@ public class Stage3 : MonoBehaviour
     {
         if (Controller.Instance.lives < 0)
         {
-            p.dead = true;
+            Controller.Instance.player.dead = true;
             StopAllCoroutines();
             Controller.Instance.clearScreen = true;
         }

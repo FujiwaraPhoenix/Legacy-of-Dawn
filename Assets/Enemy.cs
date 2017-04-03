@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     public float shotVel, shotAccel, shotMinV, shotMaxV, variance;
     public int mvtFxn, shotTimer, ticks, itemDrop, moveTimer, shotType, shotDelay, noForCirc, offsetVal, shotTicks, offsetInc, ptInRotation;
     public bool decelerating, shotDecel, lr;
+    public AudioClip pewpew, hit, kirakira;
 
     // Use this for initialization
     void Start()
@@ -52,7 +53,7 @@ public class Enemy : MonoBehaviour
             }
             if (shotType == 3)
             {
-                makeCircle(noForCirc, offsetVal, shotVel, shotAccel, shotMinV, shotMaxV, shotTicks, shotDecel);
+                makeCircle(noForCirc, offsetVal, shotVel, shotAccel, shotMinV, shotMaxV, shotTicks, shotDecel, 1);
                 offsetVal += offsetInc;
             }
             if (shotType == 4)
@@ -69,14 +70,14 @@ public class Enemy : MonoBehaviour
                 {
                     if (timerA < 3)
                     {
-                        makeCircle(noForCirc, offsetVal, shotVel, shotAccel, shotMinV, shotMaxV, shotTicks, shotDecel);
+                        makeCircle(noForCirc, offsetVal, shotVel, shotAccel, shotMinV, shotMaxV, shotTicks, shotDecel, 1);
                         offsetVal += offsetInc;
                         timerA++;
                     }
                     else
                     {
                         velocity -= .2f;
-                        makeCircle(noForCirc, offsetVal, shotVel, shotAccel, shotMinV, shotMaxV, shotTicks, shotDecel);
+                        makeCircle(noForCirc, offsetVal, shotVel, shotAccel, shotMinV, shotMaxV, shotTicks, shotDecel, 1);
                         offsetVal += offsetInc;
                         shotTimer = shotDelay + 1;
                         velocity += .2f;
@@ -133,6 +134,7 @@ public class Enemy : MonoBehaviour
     {
         if (coll.gameObject.tag == "shot")
         {
+            playSnd(0);
             Destroy(coll.gameObject);
             hp = hp - Controller.Instance.dmg;
         }
@@ -151,6 +153,7 @@ public class Enemy : MonoBehaviour
                 {
                     Controller.Instance.power -= 1f;
                 }
+                Sound.me.PlaySound(Sound.me.pichuun, 1, 48, 49);
                 Controller.Instance.invuln = true;
             }
         }
@@ -320,6 +323,7 @@ public class Enemy : MonoBehaviour
             {
                 aimed.direction = dir.normalized;
             }
+            playSnd(1);
         }
     }
 
@@ -339,10 +343,11 @@ public class Enemy : MonoBehaviour
             Vector3 dir = rota;
             aimed1.direction = dir.normalized;
             aimed1.transform.eulerAngles = new Vector3(0, 0, angle + 90);
+            playSnd(1);
         }
     }
 
-    public void makeCircle(int number, float offset, float vel, float accel, float minv, float maxv, int tickrate, bool decelYN)
+    public void makeCircle(int number, float offset, float vel, float accel, float minv, float maxv, int tickrate, bool decelYN, int sndVer)
     {
         float betAng = 360 / number;
         //Creates number of bullets
@@ -369,6 +374,14 @@ public class Enemy : MonoBehaviour
                 circBullet.transform.eulerAngles = new Vector3(0, 0, betAng * i + offset + 90);
             }
             shotTimer = 0;
+            if (sndVer == 1)
+            {
+                playSnd(1);
+            }
+            if (sndVer == 2)
+            {
+                playSnd(2);
+            }
         }
     }
 
@@ -380,7 +393,7 @@ public class Enemy : MonoBehaviour
             {
                 if (timerA < 3)
                 {
-                    makeCircle(8, offsetVal, .05f, 0, .05f, .05f, 1, false);
+                    makeCircle(8, offsetVal, .05f, 0, .05f, .05f, 1, false, 1);
                     timerA++;
                     offsetVal += offsetInc;
                     shotTimer = 0;
@@ -391,6 +404,7 @@ public class Enemy : MonoBehaviour
                     timerA = 0;
                     ptInRotation++;
                 }
+                playSnd(1);
             }
         }
         else if (ptInRotation == 2)
@@ -399,7 +413,7 @@ public class Enemy : MonoBehaviour
             {
                 if (timerA < 3)
                 {
-                    makeCircle(8, offsetVal, .05f, 0, .05f, .05f, 1, false);
+                    makeCircle(8, offsetVal, .05f, 0, .05f, .05f, 1, false, 1);
                     timerA++;
                     offsetVal -= offsetInc;
                     shotTimer = 0;
@@ -410,6 +424,7 @@ public class Enemy : MonoBehaviour
                     timerA = 0;
                     ptInRotation++;
                 }
+                playSnd(1);
             }
         }
         else if (ptInRotation == 3)
@@ -426,6 +441,7 @@ public class Enemy : MonoBehaviour
                     timerA = 0;
                     ptInRotation = 1;
                 }
+                playSnd(1);
             }
         }
     }
@@ -503,7 +519,7 @@ public class Enemy : MonoBehaviour
         float angle = GlobalFxns.ToAng(rota);
         float spdUp = .05f;
         for (int i = 0; i < 5; i++){
-            makeCircle(5, angle, spdUp, 0, spdUp, spdUp, 1, false);
+            makeCircle(5, angle, spdUp, 0, spdUp, spdUp, 1, false, 1);
             spdUp += .03f;
             shotTimer++;
         }
@@ -528,6 +544,7 @@ public class Enemy : MonoBehaviour
             offsetVal += offsetInc;
             shotTimer = 0;
             timerA++;
+            playSnd(1);
         }
         if (timerA > 2)
         {
@@ -547,12 +564,13 @@ public class Enemy : MonoBehaviour
                 tempVel2 += .025f;
             }
             timerA = 0;
+            playSnd(1);
         }
     }
 
     void somethingVariance()
     {
-        makeCircle(5, deltaAngle, .05f, 0, .05f, .05f, 1, false);
+        makeCircle(5, deltaAngle, .05f, 0, .05f, .05f, 1, false, 2);
         deltaAngle += Mathf.Sin(timerA) * 6 + 10;
         timerA++;
     }
@@ -589,7 +607,24 @@ public class Enemy : MonoBehaviour
 
                 shotTimer = 0;
                 timerA++;
+                playSnd(1);
             }
+        }
+    }
+
+    void playSnd(int type)
+    {
+        if (type == 1)
+        {
+            Sound.me.PlaySound(pewpew, 2, 0, 20);
+        }
+        else if (type == 2)
+        {
+            Sound.me.PlaySound(kirakira, 2, 20, 25);
+        }
+        else
+        {
+            Sound.me.PlaySound(hit, .05f, 25, 34);
         }
     }
 }

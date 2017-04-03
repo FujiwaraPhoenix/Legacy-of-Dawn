@@ -7,8 +7,9 @@ public class Boss1 : Enemy {
     public EnemyShot bulletA, phoenix, bulletB;
     public Rigidbody2D rb;
     public Vector3 movedirection;
-    public bool moving, justSpawned;
+    public bool moving, justSpawned, chrgAnim;
     public Animator anim;
+    public AudioClip shoot1, charging;
 
 	// Use this for initialization
 	void Start () {
@@ -76,6 +77,7 @@ public class Boss1 : Enemy {
         if (currentStg == 1)
         {
             if (timer > 15) {
+                playSnd(1);
                 EnemyShot a = (Instantiate(bulletA, transform.position, Quaternion.Euler(GlobalFxns.ToVect(0 + rotation))) as EnemyShot);
                 EnemyShot b = (Instantiate(bulletA, transform.position, Quaternion.Euler(GlobalFxns.ToVect(120 + rotation))) as EnemyShot);
                 EnemyShot c = (Instantiate(bulletA, transform.position, Quaternion.Euler(GlobalFxns.ToVect(240 + rotation))) as EnemyShot);
@@ -154,9 +156,12 @@ public class Boss1 : Enemy {
 
     void Spell1()
     {
-        if (timer == 110)
+        if (timer > 100 && !chrgAnim)
         {
             anim.Play("Mokou");
+            playSnd(3);
+            chrgAnim = !chrgAnim;
+            Debug.Log("ato");
         }
         if (timer > 120)
         {
@@ -176,12 +181,14 @@ public class Boss1 : Enemy {
             Vector3 dir = rota;
             ph.direction = dir.normalized;
             timer = 0;
-            makeCircle(10, offset, .05f, 0, .05f, .05f, 20, false);
+            makeCircle(10, offset, .05f, 0, .05f, .05f, 20, false, 1);
             offset += 5;
+            playSnd(1);
+            chrgAnim = !chrgAnim;
         }
     }
 
-    new void makeCircle(int number, float offset, float vel, float accel, float minv, float maxv, int tickrate, bool decelYN)
+    new void makeCircle(int number, float offset, float vel, float accel, float minv, float maxv, int tickrate, bool decelYN, int sndVer)
     {
         float betAng = 360 / number;
         //Creates number of bullets
@@ -211,9 +218,10 @@ public class Boss1 : Enemy {
     {
         if (timer > 60)
         {
-            makeCircle(36, offset, .05f, 0, 0, 0, 20, false);
+            makeCircle(36, offset, .05f, 0, 0, 0, 20, false, 1);
             timer = 0;
             offset += 5;
+            playSnd(1);
         }
     }
 
@@ -241,9 +249,12 @@ public class Boss1 : Enemy {
 
     void Spell2()
     {
-        if (timer == 110)
+        if (timer > 100 && !chrgAnim)
         {
             anim.Play("Mokou");
+            chrgAnim = !chrgAnim;
+            playSnd(3);
+            Debug.Log("ato");
         }
         if (timer > 120)
         {
@@ -272,6 +283,8 @@ public class Boss1 : Enemy {
                 stream.setParameters(1, .05f, 0, .05f, .05f, 1, false);
             }
             timer = 0;
+            chrgAnim = !chrgAnim;
+            playSnd(4);
         }
         if (timer2 > 15)
         {
@@ -281,6 +294,7 @@ public class Boss1 : Enemy {
             rain.setParameters(1, .2f, -.0001f, .01f, 0, 1, false);
             rain.direction = new Vector3(0, -.1f, 0);
             timer2 = 0;
+            playSnd(2);
         }
     }
 
@@ -306,5 +320,25 @@ public class Boss1 : Enemy {
         Controller.Instance.clearScreen = true;
         yield return new WaitForSeconds(1);
         Controller.Instance.clearScreen = false;
+    }
+
+    void playSnd(int type)
+    {
+        if (type == 1)
+        {
+            Sound.me.PlaySound(pewpew, 2, 0, 20);
+        }
+        else if (type == 2)
+        {
+            Sound.me.PlaySound(shoot1, 2, 20, 25);
+        }
+        else if (type == 3)
+        {
+            Sound.me.PlaySound(charging, 2, 20, 25);
+        }
+        else
+        {
+            Sound.me.PlaySound(hit, .05f, 25, 34);
+        }
     }
 }

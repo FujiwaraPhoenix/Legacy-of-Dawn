@@ -7,9 +7,10 @@ public class Item : MonoBehaviour {
     public int itemType;
     public bool PoCProc;
     public Controller cont;
+    public AudioClip coll, coll2;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         velocityY = .05f;
         gravity = -.001f;
         maxdecel = -.5f;
@@ -97,7 +98,7 @@ public class Item : MonoBehaviour {
                     Controller.Instance.points += 10000;
                 }
             }
-
+            playSnd();
             Destroy(this.gameObject);
         }
     }
@@ -107,5 +108,17 @@ public class Item : MonoBehaviour {
             Vector3 direction = new Vector3(Controller.Instance.player.transform.position.x - this.transform.position.x, Controller.Instance.player.transform.position.y - this.transform.position.y,0);
             direction = direction.normalized;
             transform.position += direction * PoCGrav;
+    }
+
+    void playSnd()
+    {
+        if (itemType != 2)
+        {
+            Sound.me.PlaySound(coll, 2, 35, 45);
+        }
+        else
+        {
+            Sound.me.PlaySound(coll2, 2, 46, 47);
+        }
     }
 }

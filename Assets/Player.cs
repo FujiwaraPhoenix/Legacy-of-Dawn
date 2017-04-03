@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
     public Controller cont;
     public Orbiter a, b;
     public LaserShot c;
+    public AudioClip shooting, bzzt;
 
     public SpriteRenderer spriteRenderer;
     public Sprite focus;
@@ -39,7 +40,6 @@ public class Player : MonoBehaviour {
             Fire();
             iFrame();
             counter++;
-            Debug.Log(Time.timeScale);
             if (!dead)
             {
                 BombActive();
@@ -157,6 +157,7 @@ public class Player : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.Z) && Input.GetKey(KeyCode.LeftShift))
             {
+                Sound.me.PlaySound(bzzt, .1f, 47, 48);
                 if (Controller.Instance.power < 2f)
                 {
                     counter = 0;
@@ -232,6 +233,7 @@ public class Player : MonoBehaviour {
             {
                 if (counter > 2)
                 {
+                    Sound.me.PlaySound(shooting, .1f, 45, 46);
                     if (Controller.Instance.power < 2f)
                     {
                         Vector3 offset1 = new Vector3(.25f, 0, 0);
