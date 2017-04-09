@@ -97,6 +97,8 @@ public class Boss3 : Enemy {
                 Destroy(this.gameObject);
             }
         }
+        Controller.Instance.bossMaxHP = newHP;
+        Controller.Instance.bossHP = this.hp;
     }
 
     void returnToPos()

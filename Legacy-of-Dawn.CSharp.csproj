@@ -75,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BGScroll.cs" />
     <Compile Include="Assets\Boss1.cs" />
     <Compile Include="Assets\Boss2.cs" />
     <Compile Include="Assets\Boss3.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\EnemyShot.cs" />
     <Compile Include="Assets\Familiar.cs" />
     <Compile Include="Assets\GlobalFxns.cs" />
+    <Compile Include="Assets\HPBar.cs" />
     <Compile Include="Assets\Hitbox.cs" />
     <Compile Include="Assets\Item.cs" />
     <Compile Include="Assets\ItemUI.cs" />
@@ -93,13 +95,10 @@
     <Compile Include="Assets\PauseMenu.cs" />
     <Compile Include="Assets\Player.cs" />
     <Compile Include="Assets\SelectorArrow.cs" />
+    <Compile Include="Assets\Sound.cs" />
     <Compile Include="Assets\Stage1.cs" />
     <Compile Include="Assets\Stage2.cs" />
     <Compile Include="Assets\Stage3.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\OSA SE\readme_EN.txt" />
-    <None Include="Assets\OSA SE\readme_JP.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

@@ -616,11 +616,11 @@ public class Enemy : MonoBehaviour
     {
         if (type == 1)
         {
-            Sound.me.PlaySound(pewpew, 2, 0, 20);
+            Sound.me.PlaySound(pewpew, .05f, 0, 20);
         }
         else if (type == 2)
         {
-            Sound.me.PlaySound(kirakira, 2, 20, 25);
+            Sound.me.PlaySound(kirakira, .05f, 20, 25);
         }
         else
         {

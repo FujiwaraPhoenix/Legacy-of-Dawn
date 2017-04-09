@@ -161,7 +161,6 @@ public class Boss1 : Enemy {
             anim.Play("Mokou");
             playSnd(3);
             chrgAnim = !chrgAnim;
-            Debug.Log("ato");
         }
         if (timer > 120)
         {
@@ -245,6 +244,8 @@ public class Boss1 : Enemy {
                 Destroy(this.gameObject);
             }
         }
+        Controller.Instance.bossMaxHP = newHP;
+        Controller.Instance.bossHP = this.hp;
     }
 
     void Spell2()
@@ -254,7 +255,6 @@ public class Boss1 : Enemy {
             anim.Play("Mokou");
             chrgAnim = !chrgAnim;
             playSnd(3);
-            Debug.Log("ato");
         }
         if (timer > 120)
         {
