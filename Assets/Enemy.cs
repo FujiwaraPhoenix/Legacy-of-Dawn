@@ -519,10 +519,11 @@ public class Enemy : MonoBehaviour
         float angle = GlobalFxns.ToAng(rota);
         float spdUp = .05f;
         for (int i = 0; i < 5; i++){
-            makeCircle(5, angle, spdUp, 0, spdUp, spdUp, 1, false, 1);
+            makeCircle(5, angle, spdUp, 0, spdUp, spdUp, 1, false, 0);
             spdUp += .03f;
             shotTimer++;
         }
+        playSnd(1);
     }
 
     void midboss2()

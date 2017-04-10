@@ -233,7 +233,7 @@ public class Player : MonoBehaviour {
             {
                 if (counter > 2)
                 {
-                    Sound.me.PlaySound(shooting, .1f, 45, 46);
+                    Sound.me.PlaySound(shooting, .05f, 45, 46);
                     if (Controller.Instance.power < 2f)
                     {
                         Vector3 offset1 = new Vector3(.25f, 0, 0);

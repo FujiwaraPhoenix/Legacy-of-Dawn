@@ -76,6 +76,14 @@ public class Boss1 : Enemy {
     {
         if (currentStg == 1)
         {
+            if (timer == 5)
+            {
+                playSnd(1);
+            }
+            if (timer == 10)
+            {
+                playSnd(1);
+            }
             if (timer > 15) {
                 playSnd(1);
                 EnemyShot a = (Instantiate(bulletA, transform.position, Quaternion.Euler(GlobalFxns.ToVect(0 + rotation))) as EnemyShot);
@@ -215,6 +223,12 @@ public class Boss1 : Enemy {
 
     void Nonspell2()
     {
+        if (timer == 30)
+        {
+            makeCircle(36, offset, .05f, 0, 0, 0, 20, false, 1);
+            offset += 5;
+            playSnd(1);
+        }
         if (timer > 60)
         {
             makeCircle(36, offset, .05f, 0, 0, 0, 20, false, 1);
@@ -235,6 +249,7 @@ public class Boss1 : Enemy {
                 hp = newHP;
                 offset = 0;
                 returnToPos();
+                timer = -60;
                 StartCoroutine(screenWipe());
             }
             else
@@ -265,9 +280,10 @@ public class Boss1 : Enemy {
                 Vector3 start = new Vector3(-4 + .8f * i, 16.5f + .4f * i, 0);
                 EnemyShot stream = Instantiate(bulletA, start, Quaternion.identity) as EnemyShot;
                 Vector3 rota = (new Vector3(tempX - stream.transform.position.x, tempY - stream.transform.position.y, 0));
-                //float angle = GlobalFxns.ToAng(rota);
+                float angle = GlobalFxns.ToAng(rota);
                 Vector3 dir = rota;
                 stream.direction = dir.normalized;
+                stream.transform.eulerAngles = new Vector3(0, 0, angle + 90);
                 stream.setParameters(1, .05f, 0, .05f, .05f, 1, false);
             }
             for (int i = 0; i < 4 + 1; i++)
@@ -277,14 +293,15 @@ public class Boss1 : Enemy {
                 Vector3 start = new Vector3(-4.5f - .8f * i, 16.9f + .4f * i, 0);
                 EnemyShot stream = Instantiate(bulletA, start, Quaternion.identity) as EnemyShot;
                 Vector3 rota = (new Vector3(tempX - stream.transform.position.x, tempY - stream.transform.position.y, 0));
-                //float angle = GlobalFxns.ToAng(rota);
+                float angle = GlobalFxns.ToAng(rota);
                 Vector3 dir = rota;
                 stream.direction = dir.normalized;
+                stream.transform.eulerAngles = new Vector3(0, 0, angle + 90);
                 stream.setParameters(1, .05f, 0, .05f, .05f, 1, false);
             }
             timer = 0;
             chrgAnim = !chrgAnim;
-            playSnd(4);
+            playSnd(5);
         }
         if (timer2 > 15)
         {
@@ -294,7 +311,7 @@ public class Boss1 : Enemy {
             rain.setParameters(1, .2f, -.0001f, .01f, 0, 1, false);
             rain.direction = new Vector3(0, -.1f, 0);
             timer2 = 0;
-            playSnd(2);
+            playSnd(4);
         }
     }
 
@@ -326,15 +343,19 @@ public class Boss1 : Enemy {
     {
         if (type == 1)
         {
-            Sound.me.PlaySound(pewpew, 2, 0, 20);
+            Sound.me.PlaySound(pewpew, .05f, 0, 20);
         }
         else if (type == 2)
         {
-            Sound.me.PlaySound(shoot1, 2, 20, 25);
+            Sound.me.PlaySound(shoot1, .05f, 20, 25);
         }
         else if (type == 3)
         {
-            Sound.me.PlaySound(charging, 2, 20, 25);
+            Sound.me.PlaySound(charging, .05f, 20, 25);
+        }
+        else if (type == 4)
+        {
+            Sound.me.PlaySound(kirakira, .05f, 0, 25);
         }
         else
         {

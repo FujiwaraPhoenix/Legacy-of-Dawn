@@ -4,8 +4,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Stage1 : MonoBehaviour {
-    public Enemy a;
+    public Enemy a, a1;
     public Boss1 b;
+    public EnemyShot c, c1, c2, c3, c4, c5;
     public Player p;
     public bool testing;
     public int tilNextStg;
@@ -89,6 +90,7 @@ public class Stage1 : MonoBehaviour {
         mob8.shotType = 1;
         mob8.shotDelay = 90;
         mob8.shotTimer = -30;
+        mob8.bullet = c;
 
         yield return new WaitForSeconds(.75f);
 
@@ -99,6 +101,7 @@ public class Stage1 : MonoBehaviour {
         mob9.shotType = 1;
         mob9.shotDelay = 90;
         mob9.shotTimer = -30;
+        mob9.bullet = c;
 
         yield return new WaitForSeconds(.75f);
 
@@ -109,6 +112,7 @@ public class Stage1 : MonoBehaviour {
         mob10.shotType = 1;
         mob10.shotDelay = 90;
         mob10.shotTimer = -30;
+        mob10.bullet = c;
 
         yield return new WaitForSeconds(.75f);
 
@@ -119,6 +123,7 @@ public class Stage1 : MonoBehaviour {
         mob11.shotType = 1;
         mob11.shotDelay = 90;
         mob11.shotTimer = -30;
+        mob11.bullet = c;
 
         yield return new WaitForSeconds(.75f);
 
@@ -129,6 +134,7 @@ public class Stage1 : MonoBehaviour {
         mob12.shotType = 1;
         mob12.shotDelay = 90;
         mob12.shotTimer = -30;
+        mob12.bullet = c;
 
         mob8.mvtFxn = 2;
         mob8.deltaAngle = -3;
@@ -144,6 +150,7 @@ public class Stage1 : MonoBehaviour {
         altMob1.shotDelay = 60;
         altMob1.shotTimer = -30;
         altMob1.offsetInc = 5;
+        altMob1.bullet = c2;
 
         yield return new WaitForSeconds(.75f);
 
@@ -154,6 +161,7 @@ public class Stage1 : MonoBehaviour {
         mob13.shotType = 1;
         mob13.shotDelay = 90;
         mob13.shotTimer = -30;
+        mob13.bullet = c;
 
         mob9.mvtFxn = 2;
         mob9.deltaAngle = -3;
@@ -168,6 +176,7 @@ public class Stage1 : MonoBehaviour {
         mob14.shotType = 1;
         mob14.shotDelay = 90;
         mob14.shotTimer = -30;
+        mob14.bullet = c;
 
         mob10.mvtFxn = 2;
         mob10.deltaAngle = -3;
@@ -210,6 +219,7 @@ public class Stage1 : MonoBehaviour {
         mob15.shotType = 1;
         mob15.shotDelay = 90;
         mob15.shotTimer = -30;
+        mob15.bullet = c;
 
         yield return new WaitForSeconds(.75f);
 
@@ -220,6 +230,7 @@ public class Stage1 : MonoBehaviour {
         mob16.shotType = 1;
         mob16.shotDelay = 90;
         mob16.shotTimer = -30;
+        mob16.bullet = c;
 
         yield return new WaitForSeconds(.75f);
 
@@ -230,6 +241,7 @@ public class Stage1 : MonoBehaviour {
         mob17.shotType = 1;
         mob17.shotDelay = 90;
         mob17.shotTimer = -30;
+        mob17.bullet = c;
 
         yield return new WaitForSeconds(.75f);
 
@@ -240,6 +252,7 @@ public class Stage1 : MonoBehaviour {
         mob18.shotType = 1;
         mob18.shotDelay = 90;
         mob18.shotTimer = -30;
+        mob18.bullet = c;
 
         yield return new WaitForSeconds(.75f);
 
@@ -250,6 +263,7 @@ public class Stage1 : MonoBehaviour {
         mob19.shotType = 1;
         mob19.shotDelay = 90;
         mob19.shotTimer = -30;
+        mob19.bullet = c;
 
         mob15.mvtFxn = 2;
         mob15.deltaAngle = 3;
@@ -265,6 +279,7 @@ public class Stage1 : MonoBehaviour {
         altMob2.shotDelay = 60;
         altMob2.shotTimer = -30;
         altMob2.offsetInc = -5;
+        altMob2.bullet = c2;
 
         yield return new WaitForSeconds(.75f);
 
@@ -275,6 +290,7 @@ public class Stage1 : MonoBehaviour {
         mob20.shotType = 1;
         mob20.shotDelay = 90;
         mob20.shotTimer = -30;
+        mob20.bullet = c;
 
         mob16.mvtFxn = 2;
         mob16.deltaAngle = 3;
@@ -289,6 +305,7 @@ public class Stage1 : MonoBehaviour {
         mob21.shotType = 1;
         mob21.shotDelay = 90;
         mob21.shotTimer = -30;
+        mob21.bullet = c;
 
         mob17.mvtFxn = 2;
         mob17.deltaAngle = 3;
@@ -323,21 +340,21 @@ public class Stage1 : MonoBehaviour {
         yield return new WaitForSeconds(2.5f);
 
         //Wave 4: Bigger fairy down center
-        Enemy mob22 = Instantiate(a, new Vector3(-4, 21, 0), Quaternion.identity);
+        Enemy mob22 = Instantiate(a1, new Vector3(-4, 21, 0), Quaternion.identity);
         mob22.setParameters(1, .025f, 0, .025f, .025f, 1, false, 200);
         mob22.direction = new Vector3(0, -1, 0);
-        mob22.transform.localScale *= 2;
         mob22.itemDrop = 2;
         mob22.shotType = 2;
         mob22.shotDelay = 90;
         mob22.shotTimer = -180;
+        mob22.bullet = c4;
 
         yield return new WaitForSeconds(2f);
 
 
         //Wave 5: Two big fairies, one on each side. Once they stop, scatter around self (reference MoF deathfairies)
 
-        Enemy altMob3 = Instantiate(a, new Vector3(-8, 22, 0), Quaternion.identity);
+        Enemy altMob3 = Instantiate(a1, new Vector3(-8, 22, 0), Quaternion.identity);
         altMob3.setParameters(1, .045f, 0, .045f, .045f, 1, false, 100);
         altMob3.direction = new Vector3(0, -1, 0);
         altMob3.noForCirc = 12;
@@ -348,7 +365,7 @@ public class Stage1 : MonoBehaviour {
         altMob3.shotTimer = -30;
         altMob3.offsetInc = 5;
 
-        Enemy altMob4 = Instantiate(a, new Vector3(0, 22, 0), Quaternion.identity);
+        Enemy altMob4 = Instantiate(a1, new Vector3(0, 22, 0), Quaternion.identity);
         altMob4.setParameters(1, .045f, 0, .045f, .045f, 1, false, 100);
         altMob4.direction = new Vector3(0, -1, 0);
         altMob4.noForCirc = 12;
@@ -379,7 +396,7 @@ public class Stage1 : MonoBehaviour {
 
         //Mini-midboss
 
-        Enemy midboss1 = Instantiate(a, new Vector3(-4, 21, 0), Quaternion.identity);
+        Enemy midboss1 = Instantiate(a1, new Vector3(-4, 21, 0), Quaternion.identity);
         midboss1.transform.localScale *= 1.5f;
         midboss1.setParameters(1, .03f, 0, .03f, .03f, 1, false, 500);
         midboss1.setShotParameters(4, .01f, 0, .01f, .01f, 1, false);

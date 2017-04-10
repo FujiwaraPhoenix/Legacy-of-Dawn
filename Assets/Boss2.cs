@@ -75,9 +75,9 @@ public class Boss2 : Enemy {
                 hp = newHP;
                 offset = 0;
                 offset2 = 0;
-                timer = 0;
-                timer2 = 0;
-                timer3 = 0;
+                timer = -60;
+                timer2 = -60;
+                timer3 = -60;
                 returnToPos();
                 StartCoroutine(screenWipe());
             }
@@ -130,10 +130,11 @@ public class Boss2 : Enemy {
                     coin.setParameters(1, shotSpd, 0, shotSpd, shotSpd, 1, false);
                     rotation -= 10;
                     shotSpd += .003f;
+                    playSnd(2);
                 }
                 rotation = 0;
                 timer2 = 1;
-                playSnd(1);
+
             }
             else if (timer2 == 1)
             {
@@ -145,10 +146,10 @@ public class Boss2 : Enemy {
                     coin.setParameters(1, shotSpd, 0, shotSpd, shotSpd, 1, false);
                     rotation += 10;
                     shotSpd += .003f;
+                    playSnd(2);
                 }
                 rotation = 0;
                 timer2 = 0;
-                playSnd(1);
             }
         }
         if (timer > 90)
@@ -165,6 +166,7 @@ public class Boss2 : Enemy {
                 Vector3 dir = rota;
                 coin.direction = dir.normalized;
                 streamSpd += .005f;
+                playSnd(1);
             }
             timer = 0;
         }
@@ -204,7 +206,7 @@ public class Boss2 : Enemy {
                 timer2 = 0;
                 timer3++;
             }
-            playSnd(1);
+            playSnd(2);
         }
         if (timer > 90)
         {
@@ -219,6 +221,7 @@ public class Boss2 : Enemy {
                     float angle = GlobalFxns.ToAng(rota);
                     makeCircle(20, coinA, angle, streamSpd, 0, streamSpd, streamSpd, 1, false);
                     streamSpd += .005f;
+                    playSnd(1);
                 }
                 timer3 = 0;
             }
@@ -269,15 +272,6 @@ public class Boss2 : Enemy {
             river2.setParameters(3, .4f, 0, .25f, .25f, 2, false);
             river2.amplitude = .5f;
             river2.lr = true;
-            EnemyShot river3 = Instantiate(water, rtSpawn2, Quaternion.identity);
-            river3.setParameters(3, .5f, 0, .25f, .25f, 2, false);
-            river3.amplitude = .5f;
-            river3.lr = false;
-            EnemyShot river4 = Instantiate(water, lfSpawn2, Quaternion.identity);
-            river4.setParameters(3, .5f, 0, .25f, .25f, 2, false);
-            river4.amplitude = .5f;
-            river4.lr = true;
-            timer = 0;
         }
         if (timer2 > 20)
         {
@@ -288,7 +282,6 @@ public class Boss2 : Enemy {
             ghostie.direction = new Vector3(0, 1, 0);
             ghostie.transform.eulerAngles = new Vector3(0, 0, 180);
             timer2 = 0;
-            playSnd(2);
         }
         if (timer3 > 30)
         {
@@ -328,11 +321,11 @@ public class Boss2 : Enemy {
     {
         if (type == 1)
         {
-            Sound.me.PlaySound(pewpew, 2, 0, 20);
+            Sound.me.PlaySound(pewpew, .05f, 0, 20);
         }
         else if (type == 2)
         {
-            Sound.me.PlaySound(kirakira, 2, 20, 25);
+            Sound.me.PlaySound(kirakira, .05f, 20, 25);
         }
         else
         {

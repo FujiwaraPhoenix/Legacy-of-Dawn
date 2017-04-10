@@ -21,6 +21,10 @@ public class EnemyShot : MonoBehaviour {
             if (mvtFxn == 1)
             {
                 linearMove(direction, velocity, acceleration, minvelocity, maxvelocity, ticks);
+                if (this.velocity == 0)
+                {
+                    Destroy(this.gameObject);
+                }
             }
             if (mvtFxn == 2)
             {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Boss3 : Enemy {
     public int remainingLives, countdown, spellTimer, currentStg, rotation, rotationA, rotationB, rotationC, rotationD, timer2, timer3, offset, offset2;
-    public EnemyShot shotA, shotB, rain;
+    public EnemyShot shotA, shotB, rain, rain2;
     public Familiar fam;
     public Rigidbody2D rb;
     public Vector3 movedirection;
@@ -286,8 +286,13 @@ public class Boss3 : Enemy {
             offset += 22;
             offset2 -= 7;
             timer = 0;
-            playSnd(3);
         }
+        if (timer2 == 5)
+        {
+            playSnd(3);
+            timer2 = 0;
+        }
+        timer2++;
     }
 
     void Nonspell2()
@@ -308,7 +313,6 @@ public class Boss3 : Enemy {
                     timer = 0;
                     timer3 = 0;
                 }
-                playSnd(1);
 
                 timer3++;
             }
@@ -320,6 +324,7 @@ public class Boss3 : Enemy {
             {
                 pauseBeforeNext = false;
                 timer2 = 0;
+                playSnd(1);
             }
             else
             {
@@ -340,7 +345,7 @@ public class Boss3 : Enemy {
             {
                 float topSpawn = Random.Range(-12, 3.5f);
                 float randVel = Random.Range(.075f, .1f);
-                EnemyShot topShot = Instantiate(shotB, new Vector3(topSpawn, 20, 0), Quaternion.identity);
+                EnemyShot topShot = Instantiate(rain2, new Vector3(topSpawn, 20, 0), Quaternion.identity);
                 topShot.setParameters(5, randVel, 0, randVel, randVel, 1, false);
                 topShot.tempInc = 1;
                 topShot.direction = GlobalFxns.ToVect(Controller.Instance.globalAng);
@@ -350,7 +355,7 @@ public class Boss3 : Enemy {
             {
                 float sideSpawnA = Random.Range(10, 19.5f);
                 float randVel = Random.Range(.075f, .1f);
-                EnemyShot leftShot = Instantiate(shotB, new Vector3(-12, sideSpawnA, 0), Quaternion.identity);
+                EnemyShot leftShot = Instantiate(rain2, new Vector3(-12, sideSpawnA, 0), Quaternion.identity);
                 leftShot.setParameters(5, randVel, 0, randVel, randVel, 1, false);
                 leftShot.tempInc = 1;
                 leftShot.direction = GlobalFxns.ToVect(Controller.Instance.globalAng);
@@ -360,7 +365,7 @@ public class Boss3 : Enemy {
             {
                 float sideSpawnB = Random.Range(10, 19.5f);
                 float randVel = Random.Range(.075f, .1f);
-                EnemyShot rightShot = Instantiate(shotB, new Vector3(3.5f, sideSpawnB, 0), Quaternion.identity);
+                EnemyShot rightShot = Instantiate(rain2, new Vector3(3.5f, sideSpawnB, 0), Quaternion.identity);
                 rightShot.setParameters(5, randVel, 0, randVel, randVel, 1, false);
                 rightShot.tempInc = 1;
                 rightShot.direction = GlobalFxns.ToVect(Controller.Instance.globalAng);
@@ -434,11 +439,11 @@ public class Boss3 : Enemy {
     {
         if (type == 1)
         {
-            Sound.me.PlaySound(pewpew, 2, 0, 20);
+            Sound.me.PlaySound(pewpew, .05f, 0, 20);
         }
         else if (type == 2)
         {
-            Sound.me.PlaySound(kirakira, 2, 20, 25);
+            Sound.me.PlaySound(kirakira, .05f, 20, 25);
         }
         else if (type == 3)
         {
@@ -446,7 +451,7 @@ public class Boss3 : Enemy {
         }
         else if (type == 4)
         {
-            Sound.me.PlaySound(kirakira, .2f, 0, 25);
+            Sound.me.PlaySound(kirakira, .05f, 0, 25);
         }
         else
         {
