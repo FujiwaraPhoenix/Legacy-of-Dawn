@@ -22,7 +22,7 @@ public class Stage1 : MonoBehaviour {
     void Update () {
 		if (Controller.Instance.lives < 0)
         {
-            p.dead = true;
+            Controller.Instance.player.dead = true;
             StopAllCoroutines();
             Controller.Instance.clearScreen = true;
         }
@@ -364,6 +364,7 @@ public class Stage1 : MonoBehaviour {
         altMob3.shotDelay = 120;
         altMob3.shotTimer = -30;
         altMob3.offsetInc = 5;
+        altMob3.bullet = c3;
 
         Enemy altMob4 = Instantiate(a1, new Vector3(0, 22, 0), Quaternion.identity);
         altMob4.setParameters(1, .045f, 0, .045f, .045f, 1, false, 100);
@@ -375,6 +376,7 @@ public class Stage1 : MonoBehaviour {
         altMob4.shotDelay = 120;
         altMob4.shotTimer = -30;
         altMob4.offsetInc = -5;
+        altMob4.bullet = c3;
 
         yield return new WaitForSeconds(1f);
 
@@ -405,6 +407,7 @@ public class Stage1 : MonoBehaviour {
         midboss1.itemDrop = 3;
         midboss1.shotDelay = 30;
         midboss1.shotTimer = -180;
+        midboss1.bullet = c4;
 
         yield return new WaitForSeconds(2);
         midboss1.velocity = 0;
@@ -429,6 +432,7 @@ public class Stage1 : MonoBehaviour {
         mob23.shotType = 1;
         mob23.shotDelay = 90;
         mob23.shotTimer = -30;
+        mob23.bullet = c;
 
         yield return new WaitForSeconds(.75f);
 
@@ -439,6 +443,7 @@ public class Stage1 : MonoBehaviour {
         mob24.shotType = 1;
         mob24.shotDelay = 90;
         mob24.shotTimer = -30;
+        mob24.bullet = c2;
 
         yield return new WaitForSeconds(.75f);
 
@@ -449,6 +454,7 @@ public class Stage1 : MonoBehaviour {
         mob25.shotType = 1;
         mob25.shotDelay = 90;
         mob25.shotTimer = -30;
+        mob25.bullet = c4;
 
         yield return new WaitForSeconds(.75f);
 
@@ -459,6 +465,7 @@ public class Stage1 : MonoBehaviour {
         mob26.shotType = 2;
         mob26.shotDelay = 90;
         mob26.shotTimer = -30;
+        mob26.bullet = c2;
 
         yield return new WaitForSeconds(.75f);
 
@@ -469,6 +476,7 @@ public class Stage1 : MonoBehaviour {
         mob27.shotType = 1;
         mob27.shotDelay = 90;
         mob27.shotTimer = -30;
+        mob27.bullet = c;
 
         yield return new WaitForSeconds(.5f);
 
@@ -481,6 +489,7 @@ public class Stage1 : MonoBehaviour {
         mob28.shotType = 1;
         mob28.shotDelay = 90;
         mob28.shotTimer = -30;
+        mob28.bullet = c;
 
         yield return new WaitForSeconds(.75f);
 
@@ -491,6 +500,7 @@ public class Stage1 : MonoBehaviour {
         mob29.shotType = 1;
         mob29.shotDelay = 90;
         mob29.shotTimer = -30;
+        mob29.bullet = c2;
 
         yield return new WaitForSeconds(.75f);
 
@@ -501,6 +511,7 @@ public class Stage1 : MonoBehaviour {
         mob30.shotType = 1;
         mob30.shotDelay = 90;
         mob30.shotTimer = -30;
+        mob30.bullet = c4;
 
         yield return new WaitForSeconds(.75f);
 
@@ -511,6 +522,7 @@ public class Stage1 : MonoBehaviour {
         mob31.shotType = 2;
         mob31.shotDelay = 90;
         mob31.shotTimer = -30;
+        mob31.bullet = c2;
 
         yield return new WaitForSeconds(.75f);
 
@@ -521,6 +533,7 @@ public class Stage1 : MonoBehaviour {
         mob32.shotType = 1;
         mob32.shotDelay = 90;
         mob32.shotTimer = -30;
+        mob32.bullet = c;
 
         yield return new WaitForSeconds(.5f);
 
@@ -533,6 +546,7 @@ public class Stage1 : MonoBehaviour {
         mob33.shotType = 1;
         mob33.shotDelay = 90;
         mob33.shotTimer = -30;
+        mob33.bullet = c4;
 
         yield return new WaitForSeconds(.75f);
 
@@ -543,6 +557,7 @@ public class Stage1 : MonoBehaviour {
         mob34.shotType = 1;
         mob34.shotDelay = 90;
         mob34.shotTimer = -30;
+        mob34.bullet = c2;
 
         yield return new WaitForSeconds(.75f);
 
@@ -553,6 +568,7 @@ public class Stage1 : MonoBehaviour {
         mob35.shotType = 1;
         mob35.shotDelay = 90;
         mob35.shotTimer = -30;
+        mob35.bullet = c;
 
         yield return new WaitForSeconds(.75f);
 
@@ -563,6 +579,7 @@ public class Stage1 : MonoBehaviour {
         mob36.shotType = 2;
         mob36.shotDelay = 90;
         mob36.shotTimer = -30;
+        mob36.bullet = c2;
 
         yield return new WaitForSeconds(.75f);
 
@@ -573,6 +590,7 @@ public class Stage1 : MonoBehaviour {
         mob37.shotType = 1;
         mob37.shotDelay = 90;
         mob37.shotTimer = -30;
+        mob37.bullet = c4;
 
         yield return new WaitForSeconds(.5f);
 
@@ -584,6 +602,7 @@ public class Stage1 : MonoBehaviour {
         mob38.shotType = 1;
         mob38.shotDelay = 90;
         mob38.shotTimer = -30;
+        mob38.bullet = c4;
 
         yield return new WaitForSeconds(.75f);
 
@@ -594,6 +613,7 @@ public class Stage1 : MonoBehaviour {
         mob39.shotType = 1;
         mob39.shotDelay = 90;
         mob39.shotTimer = -30;
+        mob39.bullet = c2;
 
         yield return new WaitForSeconds(.75f);
 
@@ -604,6 +624,7 @@ public class Stage1 : MonoBehaviour {
         mob40.shotType = 1;
         mob40.shotDelay = 90;
         mob40.shotTimer = -30;
+        mob40.bullet = c;
 
         yield return new WaitForSeconds(.75f);
 
@@ -614,6 +635,7 @@ public class Stage1 : MonoBehaviour {
         mob41.shotType = 2;
         mob41.shotDelay = 90;
         mob41.shotTimer = -30;
+        mob41.bullet = c2;
 
         yield return new WaitForSeconds(.75f);
 
@@ -624,6 +646,7 @@ public class Stage1 : MonoBehaviour {
         mob42.shotType = 1;
         mob42.shotDelay = 90;
         mob42.shotTimer = -30;
+        mob42.bullet = c4;
 
         yield return new WaitForSeconds(.5f);
 
@@ -642,6 +665,4 @@ public class Stage1 : MonoBehaviour {
         //Spawn Boss
         Boss1 boss = Instantiate(b, new Vector3(-4, 22, 0), Quaternion.identity);
     }
-
-
 }

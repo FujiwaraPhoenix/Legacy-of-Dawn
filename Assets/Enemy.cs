@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     public float velocity, acceleration, minvelocity, maxvelocity, playerX, playerY, deltaAngle, amplitude, mvtScale;
     public float shotVel, shotAccel, shotMinV, shotMaxV, variance;
     public int mvtFxn, shotTimer, ticks, itemDrop, moveTimer, shotType, shotDelay, noForCirc, offsetVal, shotTicks, offsetInc, ptInRotation;
-    public bool decelerating, shotDecel, lr;
+    public bool decelerating, shotDecel, lr, silenced;
     public AudioClip pewpew, hit, kirakira;
 
     // Use this for initialization
@@ -106,6 +106,7 @@ public class Enemy : MonoBehaviour
                 {
                     suicideFire();
                 }
+                Instantiate(Controller.Instance.expl, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }
             shotTimer++;
@@ -615,17 +616,20 @@ public class Enemy : MonoBehaviour
 
     void playSnd(int type)
     {
-        if (type == 1)
+        if (!silenced)
         {
-            Sound.me.PlaySound(pewpew, .05f, 0, 20);
-        }
-        else if (type == 2)
-        {
-            Sound.me.PlaySound(kirakira, .05f, 20, 25);
-        }
-        else
-        {
-            Sound.me.PlaySound(hit, .05f, 25, 34);
+            if (type == 1)
+            {
+                Sound.me.PlaySound(pewpew, .05f, 0, 20);
+            }
+            else if (type == 2)
+            {
+                Sound.me.PlaySound(kirakira, .05f, 20, 25);
+            }
+            else
+            {
+                Sound.me.PlaySound(hit, .05f, 25, 34);
+            }
         }
     }
 }

@@ -5,9 +5,12 @@ using UnityEngine;
 public class Stage3 : MonoBehaviour
 {
 
-    public Enemy a, a1;
+    public Enemy a, a1, a2;
     public Boss3 b;
+    public EnemyShot c, c1, c2, c3, c4, c5;
     public Player p;
+    public bool testing;
+    public int tilNextStg;
 
     void Start()
     {
@@ -31,64 +34,68 @@ public class Stage3 : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         //Wave 1: X-pattern-shooting fairies. Center shoots burst at player :D
-        Enemy fairy1 = Instantiate(a, new Vector3(-1, 22, 0), Quaternion.identity);
+        Enemy fairy1 = Instantiate(a2, new Vector3(-1, 22, 0), Quaternion.identity);
         fairy1.direction = new Vector3(0, -1, 0);
         fairy1.setParameters(1, .05f, 0, .05f, .05f, 1, false, 250);
         fairy1.setShotParameters(3, .075f, 0, .075f, .075f, 1, false);
-        fairy1.transform.localScale *= 1.5f;
         fairy1.shotDelay = 30;
         fairy1.shotTimer = -90;
         fairy1.noForCirc = 4;
         fairy1.offsetVal = 45;
         fairy1.itemDrop = 1;
+        fairy1.bullet = c3;
+        fairy1.silenced = true;
 
-        Enemy fairy2 = Instantiate(a, new Vector3(-7, 22, 0), Quaternion.identity);
+        Enemy fairy2 = Instantiate(a2, new Vector3(-7, 22, 0), Quaternion.identity);
         fairy2.direction = new Vector3(0, -1, 0);
         fairy2.setParameters(1, .05f, 0, .05f, .05f, 1, false, 250);
         fairy2.setShotParameters(3, .075f, 0, .075f, .075f, 1, false);
-        fairy2.transform.localScale *= 1.5f;
         fairy2.shotDelay = 30;
         fairy2.shotTimer = -90;
         fairy2.noForCirc = 4;
         fairy2.offsetVal = 45;
         fairy2.itemDrop = 1;
+        fairy2.bullet = c3;
+        fairy2.silenced = true;
 
         yield return new WaitForSeconds(1);
 
-        Enemy fairy3 = Instantiate(a, new Vector3(-1, 22, 0), Quaternion.identity);
+        Enemy fairy3 = Instantiate(a2, new Vector3(-1, 22, 0), Quaternion.identity);
         fairy3.direction = new Vector3(0, -1, 0);
         fairy3.setParameters(1, .075f, 0, .075f, .075f, 1, false, 250);
         fairy3.setShotParameters(3, .075f, 0, .075f, .075f, 1, false);
-        fairy3.transform.localScale *= 1.5f;
         fairy3.shotDelay = 30;
         fairy3.shotTimer = -90;
         fairy3.noForCirc = 4;
         fairy3.offsetVal = 45;
         fairy3.itemDrop = 2;
+        fairy3.bullet = c3;
+        fairy3.silenced = true;
 
-        Enemy fairy4 = Instantiate(a, new Vector3(-7, 22, 0), Quaternion.identity);
+        Enemy fairy4 = Instantiate(a2, new Vector3(-7, 22, 0), Quaternion.identity);
         fairy4.direction = new Vector3(0, -1, 0);
         fairy4.setParameters(1, .075f, 0, .075f, .075f, 1, false, 250);
         fairy4.setShotParameters(3, .075f, 0, .075f, .075f, 1, false);
-        fairy4.transform.localScale *= 1.5f;
         fairy4.shotDelay = 30;
         fairy4.shotTimer = -90;
         fairy4.noForCirc = 4;
         fairy4.offsetVal = 45;
         fairy4.itemDrop = 2;
+        fairy4.bullet = c3;
+        fairy4.silenced = true;
 
         yield return new WaitForSeconds(0.5f);
 
-        Enemy fairy5 = Instantiate(a, new Vector3(-4, 22, 0), Quaternion.identity);
+        Enemy fairy5 = Instantiate(a2, new Vector3(-4, 22, 0), Quaternion.identity);
         fairy5.direction = new Vector3(0, -1, 0);
         fairy5.setParameters(1, .05f, 0, .05f, .05f, 1, false, 500);
         fairy5.setShotParameters(1, .075f, 0, .075f, .075f, 1, false);
-        fairy5.transform.localScale *= 1.5f;
         fairy5.indirect = true;
         fairy5.variance = 5;
         fairy5.shotDelay = 20;
         fairy5.shotTimer = -40;
         fairy5.itemDrop = 1;
+        fairy5.bullet = c4;
 
         yield return new WaitForSeconds(0.5f);
         fairy1.velocity = 0;
@@ -115,64 +122,68 @@ public class Stage3 : MonoBehaviour
         fairy5.velocity = .05f;
         //Wave 2: Repeat of wave 1, except now with trash mobs in the way.
 
-        Enemy fairy6 = Instantiate(a, new Vector3(-1, 22, 0), Quaternion.identity);
+        Enemy fairy6 = Instantiate(a2, new Vector3(-1, 22, 0), Quaternion.identity);
         fairy6.direction = new Vector3(0, -1, 0);
         fairy6.setParameters(1, .05f, 0, .05f, .05f, 1, false, 250);
         fairy6.setShotParameters(3, .075f, 0, .075f, .075f, 1, false);
-        fairy6.transform.localScale *= 1.5f;
         fairy6.shotDelay = 30;
         fairy6.shotTimer = -90;
         fairy6.noForCirc = 4;
         fairy6.offsetVal = 45;
         fairy6.itemDrop = 1;
+        fairy6.bullet = c3;
+        fairy6.silenced = true;
 
-        Enemy fairy7 = Instantiate(a, new Vector3(-7, 22, 0), Quaternion.identity);
+        Enemy fairy7 = Instantiate(a2, new Vector3(-7, 22, 0), Quaternion.identity);
         fairy7.direction = new Vector3(0, -1, 0);
         fairy7.setParameters(1, .05f, 0, .05f, .05f, 1, false, 250);
         fairy7.setShotParameters(3, .075f, 0, .075f, .075f, 1, false);
-        fairy7.transform.localScale *= 1.5f;
         fairy7.shotDelay = 30;
         fairy7.shotTimer = -90;
         fairy7.noForCirc = 4;
         fairy7.offsetVal = 45;
         fairy7.itemDrop = 1;
+        fairy7.bullet = c3;
+        fairy7.silenced = true;
 
         yield return new WaitForSeconds(1);
 
-        Enemy fairy8 = Instantiate(a, new Vector3(-1, 22, 0), Quaternion.identity);
+        Enemy fairy8 = Instantiate(a2, new Vector3(-1, 22, 0), Quaternion.identity);
         fairy8.direction = new Vector3(0, -1, 0);
         fairy8.setParameters(1, .075f, 0, .075f, .075f, 1, false, 250);
         fairy8.setShotParameters(3, .075f, 0, .075f, .075f, 1, false);
-        fairy8.transform.localScale *= 1.5f;
         fairy8.shotDelay = 30;
         fairy8.shotTimer = -90;
         fairy8.noForCirc = 4;
         fairy8.offsetVal = 45;
         fairy8.itemDrop = 2;
+        fairy8.bullet = c3;
+        fairy8.silenced = true;
 
-        Enemy fairy9 = Instantiate(a, new Vector3(-7, 22, 0), Quaternion.identity);
+        Enemy fairy9 = Instantiate(a2, new Vector3(-7, 22, 0), Quaternion.identity);
         fairy9.direction = new Vector3(0, -1, 0);
         fairy9.setParameters(1, .075f, 0, .075f, .075f, 1, false, 250);
         fairy9.setShotParameters(3, .075f, 0, .075f, .075f, 1, false);
-        fairy9.transform.localScale *= 1.5f;
         fairy9.shotDelay = 30;
         fairy9.shotTimer = -90;
         fairy9.noForCirc = 4;
         fairy9.offsetVal = 45;
         fairy9.itemDrop = 2;
+        fairy9.bullet = c3;
+        fairy9.silenced = true;
 
         yield return new WaitForSeconds(0.5f);
 
-        Enemy fairy10 = Instantiate(a, new Vector3(-4, 22, 0), Quaternion.identity);
+        Enemy fairy10 = Instantiate(a2, new Vector3(-4, 22, 0), Quaternion.identity);
         fairy10.direction = new Vector3(0, -1, 0);
         fairy10.setParameters(1, .05f, 0, .05f, .05f, 1, false, 500);
         fairy10.setShotParameters(1, .075f, 0, .075f, .075f, 1, false);
-        fairy10.transform.localScale *= 1.5f;
         fairy10.indirect = true;
         fairy10.variance = 5;
         fairy10.shotDelay = 20;
         fairy10.shotTimer = -40;
         fairy10.itemDrop = 1;
+        fairy10.bullet = c2;
 
         yield return new WaitForSeconds(0.5f);
         fairy6.velocity = 0;
@@ -192,6 +203,7 @@ public class Stage3 : MonoBehaviour
         fairy11.shotDelay = 60;
         fairy11.shotTimer = -15;
         fairy11.itemDrop = 2;
+        fairy11.bullet = c1;
 
         Enemy fairy12 = Instantiate(a, new Vector3(-7, 22, 0), Quaternion.identity);
         fairy12.direction = new Vector3(0, -1, 0);
@@ -200,6 +212,7 @@ public class Stage3 : MonoBehaviour
         fairy12.shotDelay = 60;
         fairy12.shotTimer = -15;
         fairy12.itemDrop = 2;
+        fairy12.bullet = c1;
 
         yield return new WaitForSeconds(.5f);
 
@@ -210,6 +223,7 @@ public class Stage3 : MonoBehaviour
         fairy13.shotDelay = 60;
         fairy13.shotTimer = -15;
         fairy13.itemDrop = 1;
+        fairy13.bullet = c1;
 
         Enemy fairy14 = Instantiate(a, new Vector3(-7, 22, 0), Quaternion.identity);
         fairy14.direction = new Vector3(0, -1, 0);
@@ -218,6 +232,7 @@ public class Stage3 : MonoBehaviour
         fairy14.shotDelay = 60;
         fairy14.shotTimer = -15;
         fairy14.itemDrop = 1;
+        fairy14.bullet = c1;
 
         yield return new WaitForSeconds(.5f);
 
@@ -228,6 +243,7 @@ public class Stage3 : MonoBehaviour
         fairy15.shotDelay = 60;
         fairy15.shotTimer = -15;
         fairy15.itemDrop = 2;
+        fairy15.bullet = c1;
 
         Enemy fairy16 = Instantiate(a, new Vector3(-7, 22, 0), Quaternion.identity);
         fairy16.direction = new Vector3(0, -1, 0);
@@ -236,6 +252,7 @@ public class Stage3 : MonoBehaviour
         fairy16.shotDelay = 60;
         fairy16.shotTimer = -15;
         fairy16.itemDrop = 2;
+        fairy16.bullet = c1;
 
         yield return new WaitForSeconds(.5f);
 
@@ -253,6 +270,7 @@ public class Stage3 : MonoBehaviour
         fairy17.shotDelay = 60;
         fairy17.shotTimer = -15;
         fairy17.itemDrop = 1;
+        fairy17.bullet = c1;
 
         Enemy fairy18 = Instantiate(a, new Vector3(-7, 22, 0), Quaternion.identity);
         fairy18.direction = new Vector3(0, -1, 0);
@@ -261,6 +279,7 @@ public class Stage3 : MonoBehaviour
         fairy18.shotDelay = 60;
         fairy18.shotTimer = -15;
         fairy18.itemDrop = 1;
+        fairy18.bullet = c1;
 
         yield return new WaitForSeconds(.5f);
 
@@ -315,6 +334,7 @@ public class Stage3 : MonoBehaviour
         fairy19.offsetVal = 45;
         fairy19.offsetInc = -12;
         fairy19.itemDrop = 1;
+        fairy19.bullet = c;
 
         Enemy fairy20 = Instantiate(a, new Vector3(-8, 22, 0), Quaternion.identity);
         fairy20.direction = new Vector3(0, -1, 0);
@@ -327,6 +347,7 @@ public class Stage3 : MonoBehaviour
         fairy20.offsetVal = 45;
         fairy20.offsetInc = 12;
         fairy20.itemDrop = 1;
+        fairy20.bullet = c;
 
         Enemy fairy21 = Instantiate(a, new Vector3(-3, 22, 0), Quaternion.identity);
         fairy21.direction = new Vector3(0, -1, 0);
@@ -335,6 +356,7 @@ public class Stage3 : MonoBehaviour
         fairy21.shotDelay = 60;
         fairy21.shotTimer = -40;
         fairy21.itemDrop = 3;
+        fairy21.bullet = c4;
 
         Enemy fairy22 = Instantiate(a, new Vector3(-5, 22, 0), Quaternion.identity);
         fairy22.direction = new Vector3(0, -1, 0);
@@ -343,6 +365,7 @@ public class Stage3 : MonoBehaviour
         fairy22.shotDelay = 60;
         fairy22.shotTimer = -40;
         fairy22.itemDrop = 3;
+        fairy22.bullet = c4;
 
         yield return new WaitForSeconds(1.5f);
         fairy19.velocity = 0;
@@ -445,11 +468,10 @@ public class Stage3 : MonoBehaviour
 
         //Wave 5: More Yuugi wisps. Add 4 that aim at player.
         //Wave 6: Death fairy. Would be a midboss, but screw it, outta time.
-        Enemy deathFairy = Instantiate(a, new Vector3(-4, 22, 0), Quaternion.identity);
+        Enemy deathFairy = Instantiate(a2, new Vector3(-4, 22, 0), Quaternion.identity);
         deathFairy.setParameters(1, .05f, 0, .05f, .05f, 1, false, 1250);
         deathFairy.direction = new Vector3(0, -1, 0);
         deathFairy.bullet = deathFairy.bullet2;
-        deathFairy.transform.localScale *= 1.5f;
 
         yield return new WaitForSeconds(2);
         deathFairy.velocity = 0;

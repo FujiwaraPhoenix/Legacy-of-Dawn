@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyShot : MonoBehaviour {
     public Vector3 direction;
     public float velocity, acceleration, minvelocity, maxvelocity, playerX, playerY, amplitude, dirAsFloat, increment, tempInc;
-    public int mvtFxn, timer, timer2, timer3, ticks, delay;
+    public int mvtFxn, timer, timer2, timer3, ticks, delay, SDTimer;
     public bool decelerating, lr;
 
     // Use this for initialization

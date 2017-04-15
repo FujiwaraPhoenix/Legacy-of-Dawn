@@ -8,6 +8,7 @@ public class Controller : MonoBehaviour
     public float power, globalAng;
     public bool pt1up1, pt1up2, pt1up3, stageClear, laserActive, invuln, clearScreen, bombing, beginning, paused, bossDead;
     public Player player;
+    public Exploder expl;
 
     void Awake()
     {

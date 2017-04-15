@@ -4,9 +4,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Stage2 : MonoBehaviour {
-    public Enemy a, a1;
+    public Enemy a, a1, a2;
     public Boss2 b;
+    public EnemyShot c, c1, c2, c3, c4, c5, amu;
     public Player p;
+    public bool testing;
     public int tilNextStg;
 
     void Start()
@@ -47,6 +49,7 @@ public class Stage2 : MonoBehaviour {
         ghost1.amplitude = .25f;
         ghost1.lr = false;
         ghost1.mvtScale = .2f;
+        ghost1.bullet = c;
 
         Enemy ghost2 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
         ghost2.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
@@ -55,6 +58,7 @@ public class Stage2 : MonoBehaviour {
         ghost2.amplitude = .25f;
         ghost2.lr = true;
         ghost2.mvtScale = .2f;
+        ghost2.bullet = c;
 
         yield return new WaitForSeconds(.5f);
 
@@ -65,6 +69,7 @@ public class Stage2 : MonoBehaviour {
         ghost3.amplitude = .25f;
         ghost3.lr = false;
         ghost3.mvtScale = .2f;
+        ghost3.bullet = c;
 
         Enemy ghost4 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
         ghost4.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
@@ -73,6 +78,7 @@ public class Stage2 : MonoBehaviour {
         ghost4.amplitude = .25f;
         ghost4.lr = true;
         ghost4.mvtScale = .2f;
+        ghost4.bullet = c;
 
         yield return new WaitForSeconds(.5f);
 
@@ -83,6 +89,7 @@ public class Stage2 : MonoBehaviour {
         ghost5.amplitude = .25f;
         ghost5.lr = false;
         ghost5.mvtScale = .2f;
+        ghost5.bullet = c;
 
         Enemy ghost6 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
         ghost6.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
@@ -91,6 +98,7 @@ public class Stage2 : MonoBehaviour {
         ghost6.amplitude = .25f;
         ghost6.lr = true;
         ghost6.mvtScale = .2f;
+        ghost6.bullet = c;
 
         yield return new WaitForSeconds(.5f);
 
@@ -101,6 +109,7 @@ public class Stage2 : MonoBehaviour {
         ghost7.amplitude = .25f;
         ghost7.lr = false;
         ghost7.mvtScale = .2f;
+        ghost7.bullet = c;
 
         Enemy ghost8 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
         ghost8.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
@@ -109,6 +118,7 @@ public class Stage2 : MonoBehaviour {
         ghost8.amplitude = .25f;
         ghost8.lr = true;
         ghost8.mvtScale = .2f;
+        ghost8.bullet = c;
 
         yield return new WaitForSeconds(.5f);
 
@@ -119,6 +129,7 @@ public class Stage2 : MonoBehaviour {
         ghost9.amplitude = .25f;
         ghost9.lr = false;
         ghost9.mvtScale = .2f;
+        ghost9.bullet = c;
 
         Enemy ghost10 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
         ghost10.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
@@ -127,6 +138,7 @@ public class Stage2 : MonoBehaviour {
         ghost10.amplitude = .25f;
         ghost10.lr = true;
         ghost10.mvtScale = .2f;
+        ghost10.bullet = c;
 
         yield return new WaitForSeconds(8);
 
@@ -141,6 +153,7 @@ public class Stage2 : MonoBehaviour {
         fairy1.shotTimer = -15;
         fairy1.shotDelay = 30;
         fairy1.offsetInc = 5;
+        fairy1.bullet = c2;
 
         Enemy fairy2 = Instantiate(a, new Vector3(-12, 13.5f, 0), Quaternion.identity);
         fairy2.setParameters(1, .05f, 0, .05f, .05f, 1, false, 30);
@@ -151,6 +164,7 @@ public class Stage2 : MonoBehaviour {
         fairy2.shotTimer = -15;
         fairy2.shotDelay = 30;
         fairy2.offsetInc = -5;
+        fairy2.bullet = c2;
 
         yield return new WaitForSeconds(1);
 
@@ -163,6 +177,7 @@ public class Stage2 : MonoBehaviour {
         fairy3.shotTimer = -15;
         fairy3.shotDelay = 30;
         fairy3.offsetInc = 5;
+        fairy3.bullet = c4;
 
         Enemy fairy4 = Instantiate(a, new Vector3(-12, 13.5f, 0), Quaternion.identity);
         fairy4.setParameters(1, .05f, 0, .05f, .05f, 1, false, 30);
@@ -173,6 +188,7 @@ public class Stage2 : MonoBehaviour {
         fairy4.shotTimer = -15;
         fairy4.shotDelay = 30;
         fairy4.offsetInc = -5;
+        fairy4.bullet = c4;
 
         yield return new WaitForSeconds(1);
 
@@ -185,6 +201,7 @@ public class Stage2 : MonoBehaviour {
         fairy5.shotTimer = -15;
         fairy5.shotDelay = 30;
         fairy5.offsetInc = 5;
+        fairy5.bullet = c2;
 
         Enemy fairy6 = Instantiate(a, new Vector3(-12, 13.5f, 0), Quaternion.identity);
         fairy6.setParameters(1, .05f, 0, .05f, .05f, 1, false, 30);
@@ -195,6 +212,7 @@ public class Stage2 : MonoBehaviour {
         fairy6.shotTimer = -15;
         fairy6.shotDelay = 30;
         fairy6.offsetInc = -5;
+        fairy6.bullet = c2;
 
         //Wave 3: While wave 2 is moving, 2 rows from top come in and U-turn out. Aimed shots at player. 5 per row.
 
@@ -205,6 +223,7 @@ public class Stage2 : MonoBehaviour {
         fairy7.shotDelay = 60;
         fairy7.shotTimer = -15;
         fairy7.itemDrop = 2;
+        fairy7.bullet = c1;
 
         Enemy fairy8 = Instantiate(a, new Vector3(-7, 22, 0), Quaternion.identity);
         fairy8.direction = new Vector3(0, -1, 0);
@@ -213,6 +232,7 @@ public class Stage2 : MonoBehaviour {
         fairy8.shotDelay = 60;
         fairy8.shotTimer = -15;
         fairy8.itemDrop = 2;
+        fairy8.bullet = c1;
 
         yield return new WaitForSeconds(.5f);
 
@@ -223,6 +243,7 @@ public class Stage2 : MonoBehaviour {
         fairy9.shotDelay = 60;
         fairy9.shotTimer = -15;
         fairy9.itemDrop = 1;
+        fairy9.bullet = c3;
 
         Enemy fairy10 = Instantiate(a, new Vector3(-7, 22, 0), Quaternion.identity);
         fairy10.direction = new Vector3(0, -1, 0);
@@ -231,6 +252,7 @@ public class Stage2 : MonoBehaviour {
         fairy10.shotDelay = 60;
         fairy10.shotTimer = -15;
         fairy10.itemDrop = 1;
+        fairy10.bullet = c3;
 
         yield return new WaitForSeconds(.5f);
 
@@ -241,6 +263,7 @@ public class Stage2 : MonoBehaviour {
         fairy11.shotDelay = 60;
         fairy11.shotTimer = -15;
         fairy11.itemDrop = 2;
+        fairy11.bullet = c1;
 
         Enemy fairy12 = Instantiate(a, new Vector3(-7, 22, 0), Quaternion.identity);
         fairy12.direction = new Vector3(0, -1, 0);
@@ -249,6 +272,7 @@ public class Stage2 : MonoBehaviour {
         fairy12.shotDelay = 60;
         fairy12.shotTimer = -15;
         fairy12.itemDrop = 2;
+        fairy12.bullet = c1;
 
         yield return new WaitForSeconds(.5f);
 
@@ -266,6 +290,7 @@ public class Stage2 : MonoBehaviour {
         fairy13.shotDelay = 60;
         fairy13.shotTimer = -15;
         fairy13.itemDrop = 1;
+        fairy13.bullet = c3;
 
         Enemy fairy14 = Instantiate(a, new Vector3(-7, 22, 0), Quaternion.identity);
         fairy14.direction = new Vector3(0, -1, 0);
@@ -274,6 +299,7 @@ public class Stage2 : MonoBehaviour {
         fairy14.shotDelay = 60;
         fairy14.shotTimer = -15;
         fairy14.itemDrop = 1;
+        fairy14.bullet = c3;
 
         yield return new WaitForSeconds(.5f);
 
@@ -303,8 +329,7 @@ public class Stage2 : MonoBehaviour {
 
         yield return new WaitForSeconds(3);
         //Wave 4: Big fairy pops in from top left to center, create rotating circle pattern as it curves out at 120 degrees. Same from opposite direction.
-        Enemy fairy15 = Instantiate(a, new Vector3(-12, 17, 0), Quaternion.identity);
-        fairy15.transform.localScale *= 1.5f;
+        Enemy fairy15 = Instantiate(a2, new Vector3(-12, 17, 0), Quaternion.identity);
         fairy15.direction = GlobalFxns.ToVect(-45);
         fairy15.setParameters(1, .05f, 0, .05f, .05f, 1, false, 75);
         fairy15.setShotParameters(7, .1f, 0, .1f, .1f, 1, false);
@@ -313,9 +338,9 @@ public class Stage2 : MonoBehaviour {
         fairy15.shotDelay = 30;
         fairy15.shotTimer = -15;
         fairy15.itemDrop = 2;
+        fairy15.bullet = c;
 
-        Enemy fairy16 = Instantiate(a, new Vector3(4, 17, 0), Quaternion.identity);
-        fairy16.transform.localScale *= 1.5f;
+        Enemy fairy16 = Instantiate(a2, new Vector3(4, 17, 0), Quaternion.identity);
         fairy16.direction = GlobalFxns.ToVect(225);
         fairy16.setParameters(1, .05f, 0, .05f, .05f, 1, false, 75);
         fairy16.setShotParameters(7, .1f, 0, .1f, .1f, 1, false);
@@ -324,6 +349,7 @@ public class Stage2 : MonoBehaviour {
         fairy16.shotDelay = 30;
         fairy16.shotTimer = -15;
         fairy16.itemDrop = 2;
+        fairy16.bullet = c;
 
         yield return new WaitForSeconds(2);
         fairy15.mvtFxn = 2;
@@ -352,6 +378,7 @@ public class Stage2 : MonoBehaviour {
         midboss2.shotTimer = -150;
         midboss2.shotDelay = 30;
         midboss2.itemDrop = 5;
+        midboss2.bullet = amu;
         midboss2.direction = new Vector3(0, -1, 0);
         yield return new WaitForSeconds(2);
         midboss2.velocity = 0;
@@ -377,6 +404,7 @@ public class Stage2 : MonoBehaviour {
         ghost11.amplitude = .25f;
         ghost11.lr = false;
         ghost11.mvtScale = .2f;
+        ghost11.bullet = c;
 
         Enemy ghost12 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
         ghost12.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
@@ -385,6 +413,7 @@ public class Stage2 : MonoBehaviour {
         ghost12.amplitude = .25f;
         ghost12.lr = true;
         ghost12.mvtScale = .2f;
+        ghost12.bullet = c;
 
         yield return new WaitForSeconds(.5f);
 
@@ -395,6 +424,7 @@ public class Stage2 : MonoBehaviour {
         ghost13.amplitude = .25f;
         ghost13.lr = false;
         ghost13.mvtScale = .2f;
+        ghost13.bullet = c;
 
         Enemy ghost14 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
         ghost14.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
@@ -403,6 +433,7 @@ public class Stage2 : MonoBehaviour {
         ghost14.amplitude = .25f;
         ghost14.lr = true;
         ghost14.mvtScale = .2f;
+        ghost14.bullet = c;
 
         yield return new WaitForSeconds(.5f);
 
@@ -413,6 +444,7 @@ public class Stage2 : MonoBehaviour {
         ghost15.amplitude = .25f;
         ghost15.lr = false;
         ghost15.mvtScale = .2f;
+        ghost15.bullet = c;
 
         Enemy ghost16 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
         ghost16.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
@@ -421,6 +453,7 @@ public class Stage2 : MonoBehaviour {
         ghost16.amplitude = .25f;
         ghost16.lr = true;
         ghost16.mvtScale = .2f;
+        ghost16.bullet = c;
 
         Enemy altFairy1 = Instantiate(a, new Vector3(-1, 22, 0), Quaternion.identity);
         altFairy1.direction = new Vector3(0, -1, 0);
@@ -431,6 +464,7 @@ public class Stage2 : MonoBehaviour {
         altFairy1.shotTimer = -180;
         altFairy1.shotDelay = 45;
         altFairy1.itemDrop = 3;
+        altFairy1.bullet = c3;
 
         Enemy altFairy2 = Instantiate(a, new Vector3(-7, 22, 0), Quaternion.identity);
         altFairy2.direction = new Vector3(0, -1, 0);
@@ -441,6 +475,7 @@ public class Stage2 : MonoBehaviour {
         altFairy2.shotTimer = -180;
         altFairy2.shotDelay = 45;
         altFairy2.itemDrop = 3;
+        altFairy2.bullet = c3;
 
         yield return new WaitForSeconds(.5f);
 
@@ -451,6 +486,7 @@ public class Stage2 : MonoBehaviour {
         ghost17.amplitude = .25f;
         ghost17.lr = false;
         ghost17.mvtScale = .2f;
+        ghost17.bullet = c;
 
         Enemy ghost18 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
         ghost18.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
@@ -459,6 +495,7 @@ public class Stage2 : MonoBehaviour {
         ghost18.amplitude = .25f;
         ghost18.lr = true;
         ghost18.mvtScale = .2f;
+        ghost18.bullet = c;
 
         yield return new WaitForSeconds(.5f);
 
@@ -469,6 +506,7 @@ public class Stage2 : MonoBehaviour {
         ghost19.amplitude = .25f;
         ghost19.lr = false;
         ghost19.mvtScale = .2f;
+        ghost19.bullet = c;
 
         Enemy ghost20 = Instantiate(a1, new Vector3(4, 17, 0), Quaternion.identity);
         ghost20.setParameters(3, .1f, 0, .1f, .1f, 1, false, 10);
@@ -477,6 +515,7 @@ public class Stage2 : MonoBehaviour {
         ghost20.amplitude = .25f;
         ghost20.lr = true;
         ghost20.mvtScale = .2f;
+        ghost20.bullet = c;
 
         yield return new WaitForSeconds(1);
         altFairy1.velocity = 0;
