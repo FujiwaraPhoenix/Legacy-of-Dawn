@@ -30,7 +30,7 @@ public class Stage2 : MonoBehaviour {
 
         if (Controller.Instance.bossDead)
         {
-            if (tilNextStg > 180)
+            if (tilNextStg > 240)
             {
                 SceneManager.LoadScene("Stage3");
             }

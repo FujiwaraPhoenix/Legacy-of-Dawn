@@ -6,6 +6,7 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour {
     public SpriteRenderer s;
     public bool redo;
+    public AudioClip deny;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +33,10 @@ public class PauseMenu : MonoBehaviour {
             {
                 execMission(redo);
             }
+        }
+        if (Controller.Instance.player.dead)
+        {
+            s.enabled = true;
         }
     }
 
@@ -62,14 +67,27 @@ public class PauseMenu : MonoBehaviour {
             Controller.Instance.power = 1;
             Controller.Instance.paused = false;
             Controller.Instance.beginning = true;
+            Controller.Instance.player.dead = false;
+            Controller.Instance.clearScreen = false;
+            Controller.Instance.bossHP = 0;
+            Controller.Instance.bossMaxHP = 0;
+            Controller.Instance.hpbar.transform.localScale = new Vector3(0, 0, 0);
             Time.timeScale = 1;
             SceneManager.LoadScene("Stage1");
         }
         else
         {
-            Controller.Instance.paused = false;
-            Time.timeScale = 1;
-            s.enabled = false;
+            if (!Controller.Instance.player.dead)
+            {
+                Controller.Instance.paused = false;
+                Time.timeScale = 1;
+                s.enabled = false;
+            }
+            else
+            {
+                Sound.me.PlaySound(deny, .1f, 48, 49);
+            }
         }
+
     }
 }

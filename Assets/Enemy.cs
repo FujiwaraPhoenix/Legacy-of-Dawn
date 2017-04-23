@@ -154,7 +154,7 @@ public class Enemy : MonoBehaviour
                 {
                     Controller.Instance.power -= 1f;
                 }
-                Sound.me.PlaySound(Sound.me.pichuun, 1, 48, 49);
+                Sound.me.PlaySound(Sound.me.pichuun, .1f, 48, 49);
                 Controller.Instance.invuln = true;
             }
         }

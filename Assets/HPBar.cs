@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HPBar : MonoBehaviour {
+    public static HPBar hpgit;
 
 	// Use this for initialization
 	void Start () {
-		
+        Awake();
 	}
 	
 	// Update is called once per frame
@@ -21,4 +22,18 @@ public class HPBar : MonoBehaviour {
             transform.localScale = new Vector3(0, 0, 0);
         }
 	}
+
+    void Awake()
+    {
+        if (hpgit == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            hpgit = this;
+        }
+        else if (hpgit != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }

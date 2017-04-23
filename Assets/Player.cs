@@ -45,6 +45,10 @@ public class Player : MonoBehaviour {
                 BombActive();
             }
         }
+        if (dead)
+        {
+            Controller.Instance.paused = true;
+        }
 	}
 
 

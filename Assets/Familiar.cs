@@ -18,6 +18,10 @@ public class Familiar : MonoBehaviour {
         {
             Object.Destroy(this.gameObject);
         }
+        if (Controller.Instance.bossDead)
+        {
+            Object.Destroy(this.gameObject);
+        }
         if (leftright)
         {
             transform.position += new Vector3(.05f, 0, 0);

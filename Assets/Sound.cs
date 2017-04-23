@@ -63,6 +63,13 @@ public class Sound : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
+        Awake();
+        for (int i = 0; i < audSources.Length; i++)
+        {
+            if (audSources[i] == null)
+            {
+                audSources[i] = (Instantiate(audSource, new Vector3(20, 20, 0), Quaternion.identity) as GameObject).GetComponent<AudioSource>();
+            }
+        }
 	}
 }

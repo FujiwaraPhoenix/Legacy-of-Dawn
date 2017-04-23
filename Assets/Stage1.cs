@@ -14,6 +14,9 @@ public class Stage1 : MonoBehaviour {
 
     void Start()
     {
+        Controller.Instance.bossHP = 0;
+        Controller.Instance.bossMaxHP = 0;
+        Controller.Instance.hpbar.transform.localScale = new Vector3(0, 0, 0);
         StartCoroutine(stage1());
         testing = true;
     }
@@ -28,7 +31,7 @@ public class Stage1 : MonoBehaviour {
         }
         if (Controller.Instance.bossDead)
         {
-            if (tilNextStg > 180)
+            if (tilNextStg > 240)
             {
                 SceneManager.LoadScene("Stage2");
             }

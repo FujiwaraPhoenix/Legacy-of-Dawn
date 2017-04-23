@@ -250,20 +250,39 @@ public class Boss1 : Enemy {
                 offset = 0;
                 returnToPos();
                 timer = -60;
-                StartCoroutine(screenWipe());
+                StartCoroutine(screenWipe2());
             }
             else
             {
-                StartCoroutine(screenWipe());
-                Controller.Instance.bossDead = true;
-                Destroy(this.gameObject);
+                if (!Controller.Instance.bossDead)
+                {
+                    StartCoroutine(screenWipe());
+                }
             }
         }
         Controller.Instance.bossMaxHP = newHP;
         Controller.Instance.bossHP = this.hp;
     }
 
-    void Spell2()
+
+    public IEnumerator screenWipe()
+    {
+        Controller.Instance.bossDead = true;
+        GameObject boom = Instantiate(Controller.Instance.BossExpl, transform.position, Quaternion.identity);
+        Controller.Instance.clearScreen = true;
+        yield return new WaitForSeconds(2);
+        Controller.Instance.clearScreen = false;
+        Destroy(this.gameObject);
+
+    }
+
+    public IEnumerator screenWipe2()
+    {
+        Controller.Instance.clearScreen = true;
+        yield return new WaitForSeconds(2);
+        Controller.Instance.clearScreen = false;
+    }
+        void Spell2()
     {
         if (timer > 100 && !chrgAnim)
         {
@@ -331,13 +350,6 @@ public class Boss1 : Enemy {
             justSpawned = false;
         }
     } 
-
-    public IEnumerator screenWipe()
-    {
-        Controller.Instance.clearScreen = true;
-        yield return new WaitForSeconds(1);
-        Controller.Instance.clearScreen = false;
-    }
 
     void playSnd(int type)
     {

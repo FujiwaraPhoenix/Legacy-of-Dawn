@@ -79,13 +79,11 @@ public class Boss2 : Enemy {
                 timer2 = -60;
                 timer3 = -60;
                 returnToPos();
-                StartCoroutine(screenWipe());
+                StartCoroutine(screenWipe2());
             }
             else
             {
                 StartCoroutine(screenWipe());
-                Controller.Instance.bossDead = true;
-                Destroy(this.gameObject);
             }
         }
         Controller.Instance.bossMaxHP = newHP;
@@ -111,8 +109,18 @@ public class Boss2 : Enemy {
 
     public IEnumerator screenWipe()
     {
+        Controller.Instance.bossDead = true;
+        GameObject boom = Instantiate(Controller.Instance.BossExpl, transform.position, Quaternion.identity);
         Controller.Instance.clearScreen = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
+        Controller.Instance.clearScreen = false;
+        Destroy(this.gameObject);
+    }
+
+    public IEnumerator screenWipe2()
+    {
+        Controller.Instance.clearScreen = true;
+        yield return new WaitForSeconds(2);
         Controller.Instance.clearScreen = false;
     }
 

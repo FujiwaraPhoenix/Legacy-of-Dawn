@@ -81,7 +81,7 @@ public class EnemyShot : MonoBehaviour {
                 }
                 Controller.Instance.invuln = true;
             }
-            Sound.me.PlaySound(Sound.me.pichuun, 1, 48, 49);
+            Sound.me.PlaySound(Sound.me.pichuun, .1f, 48, 49);
             Destroy(this.gameObject);
         }
     }
