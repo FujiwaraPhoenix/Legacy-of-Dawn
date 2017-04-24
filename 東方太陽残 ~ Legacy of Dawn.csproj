@@ -87,6 +87,7 @@
     <Compile Include="Assets\Enemy.cs" />
     <Compile Include="Assets\EnemyShot.cs" />
     <Compile Include="Assets\Exploder.cs" />
+    <Compile Include="Assets\FadeIn.cs" />
     <Compile Include="Assets\Familiar.cs" />
     <Compile Include="Assets\GlobalFxns.cs" />
     <Compile Include="Assets\HPBar.cs" />

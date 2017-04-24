@@ -11,6 +11,7 @@ public class Controller : MonoBehaviour
     public Exploder expl;
     public GameObject BossExpl;
     public HPBar hpbar;
+    public FadeIn fader;
 
     void Awake()
     {

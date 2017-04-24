@@ -36,6 +36,7 @@ public class Stage1 : MonoBehaviour {
                 SceneManager.LoadScene("Stage2");
             }
             tilNextStg++;
+            Controller.Instance.fader.doNotFade = false;
         }
 	}
 
