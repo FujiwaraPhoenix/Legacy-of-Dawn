@@ -1,7 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "東方太陽残 ~ Legacy of Dawn.Plugins", "東方太陽残 ~ Legacy of Dawn.Plugins.csproj", "{011DB3FE-7DD6-2E91-0427-A52404DF0013}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "東方太陽残 ~ Legacy of Dawn", "東方太陽残 ~ Legacy of Dawn.csproj", "{72683F5F-83B5-5F57-089A-B2D5FB929E66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "東方太陽残 ~ Legacy of Dawn.Editor.Plugins", "東方太陽残 ~ Legacy of Dawn.Editor.Plugins.csproj", "{7368161B-8695-D361-C7C1-958D060E31C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "東方太陽残 ~ Legacy of Dawn.Editor", "東方太陽残 ~ Legacy of Dawn.Editor.csproj", "{1F7E0840-873F-34BB-DA64-A70882014B8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +15,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{011DB3FE-7DD6-2E91-0427-A52404DF0013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{011DB3FE-7DD6-2E91-0427-A52404DF0013}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{011DB3FE-7DD6-2E91-0427-A52404DF0013}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{011DB3FE-7DD6-2E91-0427-A52404DF0013}.Release|Any CPU.Build.0 = Release|Any CPU
 		{72683F5F-83B5-5F57-089A-B2D5FB929E66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{72683F5F-83B5-5F57-089A-B2D5FB929E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72683F5F-83B5-5F57-089A-B2D5FB929E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72683F5F-83B5-5F57-089A-B2D5FB929E66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7368161B-8695-D361-C7C1-958D060E31C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7368161B-8695-D361-C7C1-958D060E31C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7368161B-8695-D361-C7C1-958D060E31C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7368161B-8695-D361-C7C1-958D060E31C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F7E0840-873F-34BB-DA64-A70882014B8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F7E0840-873F-34BB-DA64-A70882014B8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F7E0840-873F-34BB-DA64-A70882014B8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F7E0840-873F-34BB-DA64-A70882014B8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

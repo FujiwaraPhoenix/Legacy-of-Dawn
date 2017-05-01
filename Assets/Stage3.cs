@@ -96,6 +96,8 @@ public class Stage3 : MonoBehaviour
         fairy5.shotTimer = -40;
         fairy5.itemDrop = 1;
         fairy5.bullet = c4;
+        GameObject sigil1 = Instantiate(Controller.Instance.sigil, fairy5.transform.position, Quaternion.identity, fairy5.transform);
+        sigil1.transform.localScale *= .25f;
 
         yield return new WaitForSeconds(0.5f);
         fairy1.velocity = 0;
@@ -184,6 +186,8 @@ public class Stage3 : MonoBehaviour
         fairy10.shotTimer = -40;
         fairy10.itemDrop = 1;
         fairy10.bullet = c2;
+        GameObject sigil2 = Instantiate(Controller.Instance.sigil, fairy10.transform.position, Quaternion.identity, fairy10.transform);
+        sigil2.transform.localScale *= .25f;
 
         yield return new WaitForSeconds(0.5f);
         fairy6.velocity = 0;
@@ -335,6 +339,8 @@ public class Stage3 : MonoBehaviour
         fairy19.offsetInc = -12;
         fairy19.itemDrop = 1;
         fairy19.bullet = c;
+        GameObject sigil3 = Instantiate(Controller.Instance.sigil, fairy19.transform.position, Quaternion.identity, fairy19.transform);
+        sigil3.transform.localScale *= .25f;
 
         Enemy fairy20 = Instantiate(a, new Vector3(-8, 22, 0), Quaternion.identity);
         fairy20.direction = new Vector3(0, -1, 0);
@@ -348,6 +354,8 @@ public class Stage3 : MonoBehaviour
         fairy20.offsetInc = 12;
         fairy20.itemDrop = 1;
         fairy20.bullet = c;
+        GameObject sigil4 = Instantiate(Controller.Instance.sigil, fairy20.transform.position, Quaternion.identity, fairy20.transform);
+        sigil4.transform.localScale *= .25f;
 
         Enemy fairy21 = Instantiate(a, new Vector3(-3, 22, 0), Quaternion.identity);
         fairy21.direction = new Vector3(0, -1, 0);
@@ -357,6 +365,8 @@ public class Stage3 : MonoBehaviour
         fairy21.shotTimer = -40;
         fairy21.itemDrop = 3;
         fairy21.bullet = c4;
+        GameObject sigil5 = Instantiate(Controller.Instance.sigil, fairy21.transform.position, Quaternion.identity, fairy21.transform);
+        sigil5.transform.localScale *= .25f;
 
         Enemy fairy22 = Instantiate(a, new Vector3(-5, 22, 0), Quaternion.identity);
         fairy22.direction = new Vector3(0, -1, 0);
@@ -366,6 +376,8 @@ public class Stage3 : MonoBehaviour
         fairy22.shotTimer = -40;
         fairy22.itemDrop = 3;
         fairy22.bullet = c4;
+        GameObject sigil6 = Instantiate(Controller.Instance.sigil, fairy22.transform.position, Quaternion.identity, fairy22.transform);
+        sigil6.transform.localScale *= .25f;
 
         yield return new WaitForSeconds(1.5f);
         fairy19.velocity = 0;
@@ -472,6 +484,8 @@ public class Stage3 : MonoBehaviour
         deathFairy.setParameters(1, .05f, 0, .05f, .05f, 1, false, 1250);
         deathFairy.direction = new Vector3(0, -1, 0);
         deathFairy.bullet = deathFairy.bullet2;
+        GameObject sigil7 = Instantiate(Controller.Instance.sigil, deathFairy.transform.position, Quaternion.identity, deathFairy.transform);
+        sigil7.transform.localScale *= .25f;
 
         yield return new WaitForSeconds(2);
         deathFairy.velocity = 0;

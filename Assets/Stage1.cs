@@ -155,6 +155,8 @@ public class Stage1 : MonoBehaviour {
         altMob1.shotTimer = -30;
         altMob1.offsetInc = 5;
         altMob1.bullet = c2;
+        GameObject sigil1 = Instantiate(Controller.Instance.sigil, altMob1.transform.position, Quaternion.identity, altMob1.transform);
+        sigil1.transform.localScale *= .5f;
 
         yield return new WaitForSeconds(.75f);
 
@@ -284,6 +286,8 @@ public class Stage1 : MonoBehaviour {
         altMob2.shotTimer = -30;
         altMob2.offsetInc = -5;
         altMob2.bullet = c2;
+        GameObject sigil2 = Instantiate(Controller.Instance.sigil, altMob2.transform.position, Quaternion.identity, altMob2.transform);
+        sigil2.transform.localScale *= .5f;
 
         yield return new WaitForSeconds(.75f);
 
@@ -369,6 +373,7 @@ public class Stage1 : MonoBehaviour {
         altMob3.shotTimer = -30;
         altMob3.offsetInc = 5;
         altMob3.bullet = c3;
+        GameObject sigil3 = Instantiate(Controller.Instance.sigil, altMob3.transform.position, Quaternion.identity, altMob3.transform);
 
         Enemy altMob4 = Instantiate(a1, new Vector3(0, 22, 0), Quaternion.identity);
         altMob4.setParameters(1, .045f, 0, .045f, .045f, 1, false, 100);

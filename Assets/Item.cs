@@ -21,7 +21,7 @@ public class Item : MonoBehaviour {
 	void Update () {
         if (!Controller.Instance.paused)
         {
-            if (Controller.Instance.player.transform.position.y >= 15f)
+            if (Controller.Instance.player.transform.position.y >= 14f)
             {
                 PoCProc = true;
             }

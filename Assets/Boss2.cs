@@ -289,6 +289,7 @@ public class Boss2 : Enemy {
             ghostie.setParameters(1, .05f, 0, .25f, 25f, 1, false);
             ghostie.direction = new Vector3(0, 1, 0);
             ghostie.transform.eulerAngles = new Vector3(0, 0, 180);
+            ghostie.transform.localScale *= .5f;
             timer2 = 0;
         }
         if (timer3 > 30)

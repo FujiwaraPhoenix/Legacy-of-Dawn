@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
     public Controller cont;
     public Orbiter a, b;
     public LaserShot c;
-    public AudioClip shooting, bzzt;
+    public AudioClip shooting, bzzt, bomb;
 
     public SpriteRenderer spriteRenderer;
     public Sprite focus;
@@ -323,15 +323,20 @@ public class Player : MonoBehaviour {
         {
             if (Controller.Instance.bombs > 0)
             {
-                if (bombCD > 60)
+                if (bombCD > 240)
                 {
                     Controller.Instance.bombs--;
                     Controller.Instance.bombing = true;
-                    bombTimer = 60;
+                    GameObject blah = Instantiate(Controller.Instance.bombAni, transform.position, Quaternion.identity);
+                    blah.transform.Rotate(new Vector3(-90, 0, 0));
+                    blah.transform.parent = gameObject.transform;
+                    blah.transform.position += new Vector3(0, 1.5f, 1);
+                    Sound.me.PlaySound(bomb, .1f, 50, 51);
+                    bombTimer = 240;
                 }
             }
         }
-        if (bombCD < 61)
+        if (bombCD < 241)
         {
             bombCD++;
         }
@@ -339,7 +344,7 @@ public class Player : MonoBehaviour {
         {
             bombTimer--;
         }
-        else
+        else if (bombTimer == 0)
         {
             Controller.Instance.bombing = false;
         }

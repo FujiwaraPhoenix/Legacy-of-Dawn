@@ -12,6 +12,7 @@ public class Controller : MonoBehaviour
     public GameObject BossExpl;
     public HPBar hpbar;
     public FadeIn fader;
+    public GameObject bombAni, sigil;
 
     void Awake()
     {

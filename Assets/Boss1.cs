@@ -267,9 +267,10 @@ public class Boss1 : Enemy {
 
     public IEnumerator screenWipe()
     {
-        Controller.Instance.bossDead = true;
         GameObject boom = Instantiate(Controller.Instance.BossExpl, transform.position, Quaternion.identity);
         Controller.Instance.clearScreen = true;
+        yield return new WaitForSeconds(2);
+        Controller.Instance.bossDead = true;
         yield return new WaitForSeconds(2);
         Controller.Instance.clearScreen = false;
         Destroy(this.gameObject);

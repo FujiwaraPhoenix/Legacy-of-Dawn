@@ -371,7 +371,7 @@ public class Stage2 : MonoBehaviour {
         yield return new WaitForSeconds(1);
 
         //Midboss: Mimic MoF stage 2 big fairy. Add homing burst shots.
-        Enemy midboss2 = Instantiate(a, new Vector3(-4, 21, 0), Quaternion.identity);
+        Enemy midboss2 = Instantiate(a2, new Vector3(-4, 21, 0), Quaternion.identity);
         midboss2.setParameters(1, .05f, 0, .05f, .05f, 1, false, 1500);
         midboss2.setShotParameters(8, .05f, 0, .05f, .05f, 1, false);
         midboss2.offsetInc = 15;
